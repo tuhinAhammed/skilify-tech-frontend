@@ -1,0 +1,5 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const DOMAIN_NAME = import.meta.env.VITE_API_DOMAIN_NAME;
+export const api = DOMAIN_NAME
+const baseApi = BASE_URL
+export const bannerApi = `${baseApi}/banner`;
