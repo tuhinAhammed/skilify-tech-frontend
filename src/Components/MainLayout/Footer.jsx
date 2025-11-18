@@ -21,12 +21,12 @@ import { VscTerminalTmux } from "react-icons/vsc";
 const contactData = [
     {
         sub: "Location",
-        title: "Bosila , Dhaka - Bangladesh",
+        title: "Uttara , Dhaka - Bangladesh",
         icon: <FaLocationDot />
     },
     {
         sub: "Mail",
-        title: "Optilius@gmail.com",
+        title: "admin@skilifyTech.com",
         icon: <IoMdMail />
     },
     {
@@ -249,7 +249,7 @@ const Footer = () => {
                     <p className="div copyright text-sm md:text-base gap-2 md:flex items-center justify-between  grid-cols-1 md:grid-cols-2  text-secondary text-opacity-[0.7]">
 
                         <p className='text-xs md:text-md text-center  font-semibold'>© IT Company Website. All Rights Reserved.</p>
-                        <p className='text-xs md:text-md text-center  font-semibold'> Designed by Optilius Digital</p>
+                        <p className='text-xs md:text-md text-center  font-semibold'> Designed by Skinify Tech</p>
 
                     </p>
                 </Container>

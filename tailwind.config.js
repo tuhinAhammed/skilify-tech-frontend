@@ -24,7 +24,7 @@ export default {
         secondary: "#fff", // text White
         tertiary: "#6d6c74",
         quaternary : "#F4F4F5",
-        static : "#000",
+        static : "#1A1A34",
         themeDeep : "#e89405",
         lightThemeBg : "#E5F2FF", // for light theme background color
         buttonHover :"#e89405",
