@@ -22,7 +22,7 @@ const OurTeamsMeet = [
 ]
 const OurTeams = () => {
   return (
-    <div>
+    <div className='py-[200px]'>
       <div className='flex items-center justify-center'>
             <SectionTitle text="Our Team" />
         </div>
