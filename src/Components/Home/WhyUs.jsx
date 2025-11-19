@@ -18,17 +18,17 @@ const WhyUs = () => {
     const whoWeAreData = [
         {
           title: "Quality Services",
-          icon: <FaAward className="text-4xl text-blue-600" />,
+          icon: <FaAward className="text-4xl " />,
           desc: "Parturient montes nascetur ridiculus mus is maecenas venenatis, neque.",
         },
         {
           title: "Professional Experts",
-          icon: <GrUserExpert className="text-4xl text-green-600" />,
+          icon: <GrUserExpert className="text-4xl " />,
           desc: "Parturient montes nascetur ridiculus mus is maecenas venenatis, neque.",
         },
         {
           title: "99% Success Rates",
-          icon: <BsBarChartFill className="text-4xl text-purple-600" />,
+          icon: <BsBarChartFill className="text-4xl " />,
           desc: "Parturient montes nascetur ridiculus mus is maecenas venenatis, neque.",
         }
       ];
