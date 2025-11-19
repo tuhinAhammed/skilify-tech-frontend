@@ -1,7 +1,8 @@
 import React from "react";
 import Container from "../../Layout/Container";
+import { MdFlatware } from "react-icons/md";
 
-const ServiceCard = () => {
+const ServiceCard = ({item}) => {
   return (
     
            <div className="overflow-hidden bg-white group cursor-pointer relative border border-[rgba(0,0,0,0.23)]
@@ -15,7 +16,8 @@ const ServiceCard = () => {
           alt="Service"
           className="w-full h-full object-cover rounded-[16px]"
         />
-
+ {/* Light Gray Overlay */}
+  <div className="absolute inset-0 bg-black/40 rounded-[16px]"></div>
         {/* Slide-Up Gradient Overlay */}
         <div
           className="
@@ -28,23 +30,48 @@ const ServiceCard = () => {
         ></div>
 
         {/* Icon Circle */}
-        <div
-          className="
-            absolute top-[-10px] left-[-9px] 
-            w-20 h-20 rounded-full flex justify-center items-center
-            bg-black text-yellow-400 text-4xl
-            transition-all duration-500
-            group-hover:bg-yellow-400 group-hover:text-black border-[13px] border-white
-          "
-        >
-          <i className="ri-smartphone-line"></i>
-        </div>
+       <div className="absolute top-[-11px] left-[-12px]">
+
+  {/* Icon Wrapper */}
+  <div
+    className="
+      relative w-20 h-20 rounded-full flex justify-center items-center
+      bg-black text-yellow-400 text-4xl border-[13px] border-white
+      overflow-hidden
+      group
+    "
+  >
+
+    {/* EXPANDING BACKGROUND (hover on) */}
+    <div
+      className="
+        absolute inset-0 bg-yellow-400 
+        scale-0 group-hover:animate-spread
+      "
+    ></div>
+
+    {/* SHRINKING BACKGROUND (hover off) */}
+    <div
+      className="
+        absolute inset-0 bg-black
+        opacity-0 group-hover:opacity-0 
+        group-hover:animate-shrinking
+      "
+    ></div>
+
+    {/* Icon */}
+    <i className="ri-smartphone-line relative z-10 group-hover:text-black"><MdFlatware />
+</i>
+
+  </div>
+</div>
+
 
         {/* Bottom Text */}
-        <div className="absolute bottom-6 left-6 text-white z-10">
-          <p className="text-lg font-medium">02</p>
+        <div className="absolute bottom-6 left-6 text-white group-hover:text-[#222429] z-10">
+          <p className="text-lg font-medium">{item.number}</p>
           <h2 className="text-2xl font-bold leading-tight">
-            Digital <br /> Marketing
+            {item.title}
           </h2>
         </div>
       </div>

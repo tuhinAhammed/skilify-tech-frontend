@@ -6,18 +6,18 @@ import TeamCards from './Team-card'
 const OurTeamsMeet = [
     {
         name: "John Doe",
-        role: "Lead Developer",
-        photo: "/team-5.png"
+        position: "Lead Developer",
+        image: "/team-5.png"
     },
     {
         name: "Jane Smith",
-        role: "UI/UX Designer",
-        photo: "/team-4.png"
+        position: "UI/UX Designer",
+        image: "/team-4.png"
     },
     {
         name: "Mike Johnson",
-        role: "Project Manager",
-        photo: "/team-6.png"
+        position: "Project Manager",
+        image: "/team-6.png"
     }
 ]
 const OurTeams = () => {
@@ -32,7 +32,7 @@ const OurTeams = () => {
          {    <div className='grid md:grid-cols-3 gap-8 mt-12 mb-24 justify-items-center'>
             {
                 OurTeamsMeet.map((item, index) => (
-                    <TeamCards key={index} item={item}  />
+                    <TeamCards key={index} {...item}  />
                 ))
             }
         </div>

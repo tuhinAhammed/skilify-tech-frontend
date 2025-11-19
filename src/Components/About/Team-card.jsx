@@ -1,13 +1,13 @@
 import { FaPlus, FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
-const TeamCards = ({ item }) => {
+const TeamCards = ({name,position,image}) => {
   return (
     <div className="relative group bg-[url('/download.svg')] bg-[#F2F3F5] bg-no-repeat bg-center bg-contain w-[400px] h-[500px] rounded-[16px] overflow-hidden">
 
       {/* Image */}
       <div>
         <img
-          src={item.photo}
+          src={image}
           alt="Team Photo"
           className="w-full h-auto p-4 rounded-[28px]"
         />
@@ -15,8 +15,8 @@ const TeamCards = ({ item }) => {
 
       {/* Text section */}
       <div className="ml-16">
-        <h2 className="text-2xl font-bold mt-4">{item.name}</h2>
-        <p className="text-gray-600 mt-2">{item.role}</p>
+        <h2 className="text-2xl font-bold mt-4">{name}</h2>
+        <p className="text-gray-600 mt-2">{position}</p>
       </div>
 
       {/* --- SOCIAL ICONS --- */}
