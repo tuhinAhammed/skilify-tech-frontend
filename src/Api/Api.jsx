@@ -9,6 +9,7 @@ export const faqDataApi = `${baseApi}/faqs`;
 export const testimonialsApi = `${baseApi}/testimonials `;
 export const contactSubmitApi = `${baseApi}/contact `;
 export const blogsApi = `${baseApi}/blogs  `;
+export const teammembers = `${baseApi}/team-members  `;
 
 
 export const toastr_position = "top-right"
