@@ -61,6 +61,16 @@ export default {
           '0%': { transform: 'scale(0)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
+
+         spread: {
+          '0%': { transform: 'scale(0)', opacity: '0' },
+          '70%': { opacity: '1' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        shrinking: {
+          '0%': { transform: 'scale(1)', opacity: '1' },
+          '100%': { transform: 'scale(0)', opacity: '0' },
+        }
       },
       animation: {
         "bounce-top": "bounce-top 4s ease-in-out infinite",
@@ -68,6 +78,8 @@ export default {
          'circle-spin': 'rotateCircle 10s linear infinite',
           'shrink': 'shrink 1s forwards ease-in-out',
         'grow': 'grow 1s forwards ease-in-out',
+        'spread': 'spread 0.4s ease-out forwards',
+        'shrinking': 'shrink 0.4s ease-in forwards',
       },
       boxShadow: {
         primary: "0px 0px 3px 0px ", // Add your custom shadow here

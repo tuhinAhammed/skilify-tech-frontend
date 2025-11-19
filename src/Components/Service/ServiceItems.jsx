@@ -1,6 +1,7 @@
-import React from 'react'
+import { useEffect, useState } from 'react';
 import Container from '../../Layout/Container'
 import ServiceCard from './ServiceCard'
+import { serviceListApi } from '../../Api/Api';
 const servicesItems = [
     {
         id: 1,
@@ -46,7 +47,23 @@ const servicesItems = [
     },
 ]
 const ServiceItems = () => {
+    // const [loading, setLoading] = useState(true);
+    // const [serviceData, setServiceData] = useState([]);
 
+    // useEffect(() => {
+    //     const services = async () => {
+    //         setLoading(true);
+    //         try {
+    //             const res = await axios.get(serviceListApi);
+    //             setServiceData(res.data.list); // Your API returns a single array
+    //             setLoading(false);
+    //         } catch (err) {
+    //             setLoading(false);
+    //         }
+    //     };
+    //     services();
+    // }, []);
+    // console.log(serviceData);
   return (
     <div>
         <Container>
