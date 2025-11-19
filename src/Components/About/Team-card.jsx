@@ -15,8 +15,8 @@ const TeamCards = ({ item }) => {
 
       {/* Text section */}
       <div className="ml-16">
-        <h2 className="text-2xl font-bold mt-4">Our Dedicated Team</h2>
-        <p className="text-gray-600 mt-2">Meet the professionals.</p>
+        <h2 className="text-2xl font-bold mt-4">{item.name}</h2>
+        <p className="text-gray-600 mt-2">{item.role}</p>
       </div>
 
       {/* --- SOCIAL ICONS --- */}

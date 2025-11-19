@@ -23,7 +23,7 @@ const howitWOrk = [
 ]
 const HowItWork = () => {
   return (
-    <div className="relative bg-[url('/How-it-work2.jpg')] bg-cover bg-center bg-no-repeat">
+    <div className="relative bg-[url('/How-it-work2.jpg')] bg-cover bg-center bg-no-repeat py-[200px]">
         <div className='flex items-center justify-center'>
             <SectionTitle text="How It Works" />
         </div>
