@@ -10,7 +10,7 @@ const AboutOurCompany = () => {
   return (
     <div className='py-[200px]'>
       <Container>
-        <div className='grid grid-cols-2 gap-8'>
+        <div className='grid grid-cols-2 gap-12'>
            <div className="w-full flex justify-center items-center">
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl">
 
