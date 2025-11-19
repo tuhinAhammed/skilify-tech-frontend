@@ -7,6 +7,7 @@ import Contact from './Pages/Contact.jsx';
 import UserContact from "./Pages/UserContact.jsx";
 import RootLayout from "./RootLayout.jsx";
 import Services from "./Pages/Services.jsx";
+import AboutPage from "./Pages/about.jsx";
 
 
 const root = document.getElementById("root");
@@ -19,6 +20,7 @@ ReactDOM.createRoot(root).render(
       <Route path="contact" element={<Contact />} />
       <Route path="contact/user-contact" element={<UserContact />} />
       <Route path="services" element={<Services />} />
+      <Route path="about" element={<AboutPage />} />
 
       </Route>
     </Routes>

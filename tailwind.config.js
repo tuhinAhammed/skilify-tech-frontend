@@ -49,14 +49,30 @@ export default {
           "0%, 100%": { transform: "translateX(0)" },
           "50%": { transform: "translateX(-15px)" },
         },
+         rotateCircle: {
+      '0%': { transform: 'translate(-50%, -50%) rotate(0deg)' },
+      '100%': { transform: 'translate(-50%, -50%) rotate(360deg)' },
+    },
+    shrink: {
+          '0%': { transform: 'scale(1)', opacity: '1' },
+          '100%': { transform: 'scale(0)', opacity: '0' },
+        },
+        grow: {
+          '0%': { transform: 'scale(0)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
       },
       animation: {
         "bounce-top": "bounce-top 4s ease-in-out infinite",
         "bounce-left": "bounce-left 6s ease-in-out infinite",
+         'circle-spin': 'rotateCircle 10s linear infinite',
+          'shrink': 'shrink 1s forwards ease-in-out',
+        'grow': 'grow 1s forwards ease-in-out',
       },
       boxShadow: {
         primary: "0px 0px 3px 0px ", // Add your custom shadow here
       },
+  
     },
   },
   plugins: [],
