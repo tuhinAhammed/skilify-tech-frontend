@@ -9,3 +9,7 @@
   margin: 0px;
   padding: 0px;
 }
+:root {
+  --theme-color: #FFAA18; /* Website theme color */
+  --primary-color: #000;  /* Primary text color */
+}

@@ -6,3 +6,4 @@ export const bannerApi = `${baseApi}/banner`;
 export const serviceListApi = `${baseApi}/services`;
 export const productListApi = `${baseApi}/products`;
 export const faqDataApi = `${baseApi}/faqs`;
+export const testimonialsApi = `${baseApi}/testimonials `;
