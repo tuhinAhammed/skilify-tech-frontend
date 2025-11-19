@@ -7,3 +7,8 @@ export const serviceListApi = `${baseApi}/services`;
 export const productListApi = `${baseApi}/products`;
 export const faqDataApi = `${baseApi}/faqs`;
 export const testimonialsApi = `${baseApi}/testimonials `;
+export const contactSubmitApi = `${baseApi}/contact `;
+export const blogsApi = `${baseApi}/blogs  `;
+
+
+export const toastr_position = "top-right"

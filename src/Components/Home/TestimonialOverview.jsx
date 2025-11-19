@@ -16,7 +16,7 @@ import SectionTitle from '../../Layout/Title/SectionTitle';
 import LargeTitle from '../../Layout/Title/LargeTitle';
 import ExtraMidTitle from '../../Layout/Title/ExtraMidTitle';
 import axios from 'axios';
-import { testimonialsApi } from '../../Api/Api';
+import { api, testimonialsApi } from '../../Api/Api';
 
 export const testimonialData = [
   {
@@ -200,7 +200,8 @@ const TestimonialOverview = () => {
                     {/* <CardBox className={` !p-6 lg:!p-10`}> */}
                     <div className="inner grid grid-cols-1 lg:grid-cols-4 gap-100 lg:gap-10 py-[20px]">
                       <div className='rounded-full mx-auto lg:ml-auto lg:rounded-lg  overflow-hidden lg:col-span-1'>
-                        <img src={testimonialImg} alt="img" className='rounded-lg  ' />
+                        <img src={`${api}/storage/${item.image
+                          }`} alt="img" className='rounded-lg  ' />
                       </div>
                       <div className="desc lg:col-span-3 text-left">
                         <FaQuoteLeft className='text-theme text-[40px] lg:text-[80px] leading-none' />
