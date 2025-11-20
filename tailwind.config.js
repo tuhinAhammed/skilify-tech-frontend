@@ -32,7 +32,7 @@ export default {
         skeletonLoading : "#cbd5e1"
       },
       padding: {
-        'sectionSm': '30px',
+        'sectionSm': '60px',
         'sectionMd': '60px',
         'sectionLg': '80px',
       },

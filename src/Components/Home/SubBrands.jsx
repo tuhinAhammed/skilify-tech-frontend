@@ -23,9 +23,9 @@ const subBrandData = [
 
 const SubBrands = () => {
     return (
-        <div className="pb-sectionSm md:pb-sectionMd lg:pb-sectionLg relative bg-secondary">
+        <div className=" relative bg-secondary">
             <MidTitle 
-                className="text-primary pb-sectionMd font-semibold !uppercase text-center" 
+                className="text-primary pb-6 md:pb-sectionMd font-semibold !uppercase text-center" 
                 text="1K+ Brands Trust Us"
             />
             <Container>

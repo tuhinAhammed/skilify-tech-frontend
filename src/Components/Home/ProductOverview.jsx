@@ -25,9 +25,9 @@ const ProductOverview = () => {
   }, []);
 
   return (
-    <div className="w-full h-screen overflow-hidden py-sectionLg">
+    <div className="w-full h-screen overflow-hidden md:py-sectionLg">
       <div className="flex items-center justify-center">
-        <SectionTitle text="Our Services" />
+        <SectionTitle text="Recent Product" />
       </div>
       <LargeTitle
         className="pb-8 font-bold w-[80%] md:w-[60%] m-auto text-center pt-2 md:pt-4 text-primary animate__animated animate__bounce"
@@ -49,14 +49,14 @@ const ProductOverview = () => {
         {bannerData.map((item, index) => (
           <SwiperSlide key={index} className="h-full">
             <Container>
-              <div className="grid grid-cols-1 md:grid-cols-2 items-center h-full py-10">
+              <div className="grid grid-cols-1 md:grid-cols-2  items-center h-full md:py-10">
 
                 {/* LEFT CONTENT */}
-                <div className="flex flex-col items-start h-full pl-12 justify-center bg-[#1A1A34]">
+                <div className="flex flex-col items-start p-6 md:p-0  h-full md:pl-12 justify-center bg-[#1A1A34]">
                   <h1 className="text-3xl test-left md:text-5xl font-bold text-secondary ">
                     {item.product_name}
                   </h1>
-                  <MidTitle className="text-secondary max-w-xl py-6 text-left pr-12" text={item.description}/>
+                  <MidTitle className="text-secondary max-w-xl py-4 md:py-6 text-left md:pr-12" text={item.description}/>
                   {/* <p className="text-secondary text-lg mb-6 max-w-xl">
                     {item.description}
                   </p> */}
@@ -71,7 +71,7 @@ const ProductOverview = () => {
                   <img
                     src={`${api}/storage/${item.image}`}
                     alt={item.product_name}
-                    className="w-full h-[300px] md:h-[450px] object-cover rounded-2xl shadow-lg"
+                    className="w-full h-[300px] md:h-[450px] object-cover  shadow-lg"
                   />
                 </div>
 

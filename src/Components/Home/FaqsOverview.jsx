@@ -54,19 +54,21 @@ const FaqsOverview = () => {
                 <div className="shape absolute top-15 left-[45rem] animate-bounce-top [animation-duration:2s]">
                     <img src={faqShape} alt="" />
                 </div>
-                <div className="shape absolute bottom-16 left-[45rem] animate-bounce-left [animation-duration:2s]">
+                <div className="shape absolute animate-spin bottom-16 left-[45rem] animate-bounce-left [animation-duration:2s]">
                     <img src={faqStar} alt="" />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
 
                     {/* LEFT EMPTY SIDEBAR (keeping your design exactly same) */}
                     <div className=" z-[4] bg-secondary">
                         <div
                             className="px-5 py-2 rounded-lg border-opacity-[0.3]"
                         >
-                            <SectionTitle text="our faqs" />
-                            <LargeTitle className="font-bold pt-4 text-primary" text="Empowering Knowledge: Your Questions Answered" />
-                            <div className="question pt-8">
+                            <div className="flex flex-col items-center md:items-start">
+                                <SectionTitle text="our faqs" />
+                            </div>
+                            <LargeTitle className="font-bold pt-2 md:pt-4 text-primary text-center md:text-left" text="Empowering Knowledge: Your Questions Answered" />
+                            <div className="question pt-4 sm:pt-6 md:pt-8">
 
                                 {faqData.slice(0, 4)?.map((faqItem, index) => {
                                     const faqKey = `faq-${index}`;

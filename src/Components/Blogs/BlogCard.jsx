@@ -46,13 +46,13 @@ const BlogCard = ({ blogLink, id, blogTitle, blogCategory, blogDesc, blogDate, b
                     text={blogCategory}
                     className="py-[3px] px-3 rounded-sm bg-theme inline-block text-secondary absolute right-0 top-0"
                 />
-                <div className="absolute bottom-0 px-6 py-2 bg-theme">
+                <div className="absolute bottom-0 px-2 sm:px-3 md:px-6 py-1 sm:py-2 bg-theme">
                     {/* <SlCalender className='text-secondary' /> */}
 
                     {/* 🔥 Formatted date */}
                     <div className="text-left leading-tight">
-                        <div className="text-2xl font-semibold text-center">{day}</div>
-                        <div className="text-base text-primary font-light text-center">{month}</div>
+                        <div className="text-xs sm:text-g md:text-2xl font-semibold text-center">{day}</div>
+                        <div className="text-xs text-primary font-light text-center">{month}</div>
                     </div>
                 </div>
             </div>

@@ -166,7 +166,7 @@ const TestimonialOverview = () => {
             `}</style>
       <div className="pb-sectionSm md:pb-sectionMd lg:pb-sectionLg  bg-secondary md:px-40 relative">
         <Container>
-          <div className="pb-12">
+          <div className="pb-4 sm:pb-6 md:pb-12">
             <div className="flex items-center justify-center">
               <SectionTitle text="testimonials" />
             </div>
@@ -199,13 +199,16 @@ const TestimonialOverview = () => {
                   <SwiperSlide className='!bg-transparent ' key={personName}>
                     {/* <CardBox className={` !p-6 lg:!p-10`}> */}
                     <div className="inner grid grid-cols-1 lg:grid-cols-4 gap-100 lg:gap-10 py-[20px]">
-                      <div className='rounded-full mx-auto lg:ml-auto lg:rounded-lg  overflow-hidden lg:col-span-1'>
-                        <img src={`${api}/storage/${item.image
-                          }`} alt="img" className='rounded-lg  ' />
+                      <div className="overflow-hidden rounded-full mx-auto lg:ml-0 lg:rounded-lg lg:col-span-1">
+                        <img
+                          src={`${api}/storage/${item.image}`}
+                          alt="img"
+                          className="rounded-lg aspect-[4/4] max-h-[80px] md:max-h-full"
+                        />
                       </div>
                       <div className="desc lg:col-span-3 text-left">
                         <FaQuoteLeft className='text-theme text-[40px] lg:text-[80px] leading-none' />
-                        <ExtraMidTitle text={item?.feedback} className="!text-tertiary font-secondary py-2 h-[230px] lg:h-auto" />
+                        <ExtraMidTitle text={item?.feedback} className="!text-tertiary font-secondary py-2 h-[130px] sm:h-[180px] lg:h-auto" />
                         <MidTitle text={item?.name
                         } className="text-theme" />
                         <MinTitle text={item?.profession

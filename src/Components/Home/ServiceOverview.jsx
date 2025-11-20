@@ -40,7 +40,7 @@ const ServiceOverview = () => {
           />
 
           {/* List of Services */}
-          <div className="pt-10 divide-y divide-white/30">
+          <div className="pt-5 sm:pt-6 md:pt-8 lg:pt-10 divide-y divide-white/30">
             {servicesData.map((item) => {
                 return(
 

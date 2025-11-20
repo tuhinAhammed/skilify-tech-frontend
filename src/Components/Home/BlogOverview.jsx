@@ -31,7 +31,7 @@ const BlogOverview = () => {
     const sortedBlogData = [...blogData].sort((a, b) => new Date(b.blogDate) - new Date(a.blogDate))
 
     return (
-        <div className='pb-sectionSm md:pb-sectionMd xl:pb-sectionLg'>
+        <div className='py-sectionSm md:py-sectionMd lg:py-sectionLg'>
             <Container>
                 <div className="text-center">
                     <div className="flex items-center justify-center">
@@ -44,7 +44,7 @@ const BlogOverview = () => {
                     {/* <Line className="m-auto" /> */}
                 </div>
 
-                <div className="py-3 mt-4 md:mt-0">
+                <div className="py-3  md:mt-0">
                     <div className="flex justify-end items-center ">
                         <ViewAllButton
                             text="See More Blog"
@@ -64,12 +64,12 @@ const BlogOverview = () => {
                             disableOnInteraction: false,
                         }}
                         breakpoints={{
-                            380: {
-                                slidesPerView: 1,
+                            375: {
+                                slidesPerView: 2,
                                 spaceBetween: 10,
                             },
                             640: {
-                                slidesPerView: 1,
+                                slidesPerView: 2,
                                 spaceBetween: 20,
                             },
                             768: {

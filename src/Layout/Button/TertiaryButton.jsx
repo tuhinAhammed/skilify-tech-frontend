@@ -17,7 +17,7 @@ const TertiaryButton = ({ className, text, slug, disabled, icon }) => {
     <div
     onClick={handleButtonClick}
     disabled={disabled}
-      className={`relative inline-block px-1 sm:px-[2px] md:px-5 py-1 sm:py-[6px] md:py-[6px] lg:py-3  text-sm lg:text-base text-center  font-medium border-2 border-theme bg-theme rounded-md cursor-pointer text-white uppercase ${className} overflow-hidden group`}
+      className={`relative inline-block px-2 sm:px-2 md:px-5 py-1 sm:py-[6px] md:py-[6px] lg:py-3  text-sm lg:text-base text-center  font-medium border-2 border-theme bg-theme rounded-md cursor-pointer text-white uppercase ${className} overflow-hidden group`}
     >
 
         <span className="flex items-center gap-2 justify-center relative z-20 transition-colors duration-0 ease-in-out group-hover:text-theme group-active:text-secondary">

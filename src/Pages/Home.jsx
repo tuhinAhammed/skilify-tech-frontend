@@ -11,6 +11,7 @@ import TestimonialOverview from '../Components/Home/TestimonialOverview'
 import SubBrands from '../Components/Home/SubBrands'
 import ContactOverview from '../Components/Home/ContactOverview'
 import BlogOverview from '../Components/Home/BlogOverview'
+import Strategy from '../Components/Home/Strategy'
 
 const Home = () => {
   return (
@@ -26,6 +27,7 @@ const Home = () => {
         <SubBrands/>
         <ContactOverview/>
         <BlogOverview/>
+        <Strategy/>
     </div>
   )
 }
