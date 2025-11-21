@@ -1,4 +1,6 @@
 import React from "react";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { RiArrowRightSLine } from "react-icons/ri";
 import { NavLink, useLocation } from "react-router-dom";
 
 const BreadcrumbPath = ({ slug , className}) => {
@@ -12,16 +14,16 @@ const BreadcrumbPath = ({ slug , className}) => {
   const path = location.pathname; 
   const desiredPath = path.substring(0, path.lastIndexOf('/')); 
   if (desiredPath === "/dashboard/order") {
-    return <p className="text-[8px] text-theme sm:text-[10px] md:text-[12px]">{location.pathname.split("/")[3]}</p>;
+    return <p className="text-base text-theme  ">{location.pathname.split("/")[3]}</p>;
   }
   
   // Split the current pathname into parts
   return (
     <nav className={`  ${className}`}>
-      <ul className="flex text-[8px] sm:text-[10px] md:text-[12px]">
+      <ul className="flex text-xs font-secondary justify-center items-center sm:text-base md:text-lg">
         {/* Home Link */}
         <li>
-          <NavLink to="/" className="text-theme hover:underline ">
+          <NavLink to="/" className="text-secondary font-secondary opacity-[0.8] hover:underline ">
             Home
           </NavLink>
         </li>
@@ -33,21 +35,21 @@ const BreadcrumbPath = ({ slug , className}) => {
 
               return (
                 <React.Fragment key={index}>
-                  <li className="text-primary px-1">/</li>
+                  <li className="text-primary px-2"><RiArrowRightSLine className="text-secondary opacity-[0.8] font-secondary text-xl mt-1" /></li>
                   {slug ? (
                     <li className="">
-                      <span className="text-primary  capitalize">{slug}</span>
+                      <span className="text-secondary opacity-[0.8]  capitalize">{slug}</span>
                     </li>
                   ) : (
                     <li className="">
                       {isLast ? (
-                        <span className="text-primary  capitalize">
+                        <span className="text-secondary opacity-[0.8]  capitalize">
                           {value}
                         </span>
                       ) : (
                         <NavLink
                           to={to}
-                          className="text-theme  hover:underline capitalize"
+                          className="text-secondary opacity-[0.8]  hover:underline capitalize"
                         >
                           {value}
                         </NavLink>

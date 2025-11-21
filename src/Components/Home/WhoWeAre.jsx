@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from '../../Layout/Container'
 import SectionTitle from '../../Layout/Title/SectionTitle'
 import LargeTitle from '../../Layout/Title/LargeTitle'
@@ -12,6 +12,8 @@ import { GrUserExpert } from 'react-icons/gr'
 import CountUp from 'react-countup'
 import founderImg from "../../assets/About/founderImg.png"
 import founderSignature from "../../assets/About/founderSignature.png"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const WhoWeAre = () => {
     const whoWeAreData = [
         {
@@ -32,27 +34,36 @@ const WhoWeAre = () => {
         },
 
     ]
+// Animation
+    useEffect(() => {
+        AOS.init({
+          once: false, // or true, depending on whether you want animation only once
+          // other global settings
+        });
+      }, []);
     return (
         <div className='py-sectionSm  md:py-sectionMd lg:py-sectionLg'>
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-14 md:gap-24">
-                    <div className="overflow-hidden [clip-path:polygon(25%_0,75%_0,75%_25%,100%_25%,100%_75%,75%_75%,75%_100%,25%_100%,25%_75%,0_75%,0_25%,25%_25%)]">
+                    <div data-aos="fade-right" data-aos-duration="1000" className="overflow-hidden [clip-path:polygon(25%_0,75%_0,75%_25%,100%_25%,100%_75%,75%_75%,75%_100%,25%_100%,25%_75%,0_75%,0_25%,25%_25%)]">
                         <img src={whoWeAre} className="w-full h-full object-cover" />
                     </div>
 
 
                     <div className="">
                     <div className="flex flex-col items-center md:items-start">
-                            <SectionTitle text="Who We Are" className="" />
+                            <SectionTitle data-aos="fade-down" data-aos-duration="1000"  text="Who We Are" className="" />
                         </div>
-                        <LargeTitle className="font-bold pt-2 md:pt-4 text-center lg:text-left" text="We Optimize Your Funnel For Higher Conversions" />
+                        <div className="">
+                        <LargeTitle data-aos="fade-left" data-aos-duration="1000" className="font-bold pt-2 md:pt-4 text-center lg:text-left" text="We Optimize Your Funnel For Higher Conversions" />
+                        </div>
                         <MidTitle className="text-tertiary opacity-[0.8] text-center lg:text-left font-secondary py-6 sm:py-6 md:py-8 lg:py-10" text="Digiplus is the hub for early adopters and innovation enthusiasts, offering vibrant, imaginative technology before it becomes mainstream sem taciti placerat There are many variations of passages of available but the majority" />
                         <div className="grid grid-cols-12 items-center lg:items-end justify-between gap-6">
                             <div className="col-span-9 md:col-span-8">
                                 <div className="grid grid-cols-1 gap-2 md:gap-6">
                                     {
                                         whoWeAreData.map((item, index) => (
-                                            <div className="flex items-center gap-2 md:gap-6 group">
+                                            <div data-aos="fade-left" data-aos-duration="1000"  className="flex items-center gap-2 md:gap-6 group">
                                                 <p
                                                     key={index}
                                                     className="text-2xl md:text-3xl lg:text-5xl text-theme transform transition-transform duration-300 group-hover:-scale-x-100"

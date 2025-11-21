@@ -15,7 +15,8 @@ import ViewAllButton from '../../Layout/Button/ViewAllButton'
 import { useNavigate } from 'react-router';
 import { blogsApi } from '../../Api/Api';
 import axios from 'axios';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const BlogOverview = () => {
     const [blogData, setBlogData] = useState([])
     const navigate = useNavigate();
@@ -29,22 +30,31 @@ const BlogOverview = () => {
         fetchApi();
     }, []);
     const sortedBlogData = [...blogData].sort((a, b) => new Date(b.blogDate) - new Date(a.blogDate))
-
+    // Animation
+    useEffect(() => {
+        AOS.init({
+            once: false,
+            mirror: true,
+        });
+    }, []);
     return (
         <div className='py-sectionSm md:py-sectionMd lg:py-sectionLg'>
             <Container>
                 <div className="text-center">
                     <div className="flex items-center justify-center">
-                        <SectionTitle text="FROM THE BLOG" />
+                        <SectionTitle data-aos="fade-up" data-aos-duration="1000" text="FROM THE BLOG" />
                     </div>
-                    <LargeTitle
-                        className=" font-bold w-[80%] md:w-[60%] m-auto text-center pt-2 md:pt-3 text-primary animate__animated animate__bounce"
-                        text="News & articles"
-                    />
+                    <div data-aos="fade-up" data-aos-duration="1000" className="">
+                        <LargeTitle
+                            className=" font-bold w-[80%] md:w-[60%] m-auto text-center pt-2 md:pt-3 text-primary animate__animated animate__bounce"
+                            text="News & articles"
+                        />
+
+                    </div>
                     {/* <Line className="m-auto" /> */}
                 </div>
 
-                <div className="py-3  md:mt-0">
+                <div data-aos="fade-up" data-aos-duration="1000" className="py-3  md:mt-0">
                     <div className="flex justify-end items-center ">
                         <ViewAllButton
                             text="See More Blog"

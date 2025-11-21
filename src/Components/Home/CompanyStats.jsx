@@ -12,6 +12,8 @@ import shapeLine from "../../assets/CompanyStats/shapeLine.png"
 import 'animate.css';
 import { FaChartLine, FaProjectDiagram, FaSmile } from "react-icons/fa";
 import MidTitle from "../../Layout/Title/MidTitle";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const CompanyStats = () => {
     const navigate = useNavigate();
     const statsData = [
@@ -31,6 +33,13 @@ const CompanyStats = () => {
             title: "SEO & Impressions",
         },
     ];
+// Animation
+useEffect(() => {
+    AOS.init({
+      once: false, // or true, depending on whether you want animation only once
+      // other global settings
+    });
+  }, []);
     return (
         <div
             className="py-sectionSm md:py-sectionMd lg:py-sectionLg bg-no-repeat bg-center bg-cover relative"
@@ -49,15 +58,21 @@ const CompanyStats = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-10 justify-between z-10">
                         {/* Left Section */}
                         <div>
-                            <SectionTitle text="Our Services" />
+                            <SectionTitle data-aos="fade-right" data-aos-duration="1000" text="Numbers don’t lie" />
+                            <div className="">
+                            <div data-aos="fade-right" data-aos-duration="1000" className="">
                             <LargeTitle
+                            
                                 className=" font-bold pt-2 md:pt-4 text-secondary animate__animated animate__bounce"
                                 text="Empower Your Business With Innovative Digital Services"
                             />
+
+                            </div>
+                            </div>
                         </div>
 
                         {/* Right Section */}
-                        <div className="pt-6 md:pt-10 grid grid-cols-1 gap-y-6 z-10 w-full">
+                        <div data-aos="fade-up" data-aos-duration="500" className="pt-6 md:pt-10 grid grid-cols-1 gap-y-6 z-10 w-full">
                             {statsData.map((item, index) => (
                                 <div
                                     key={index}

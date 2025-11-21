@@ -1,6 +1,6 @@
 import { FaPlus, FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
-const TeamCards = ({name,position,image}) => {
+const TeamCard = ({name,position,image}) => {
   return (
     <div className="relative group bg-[url('/download.svg')] bg-[#F2F3F5] bg-no-repeat bg-center bg-contain w-[400px] h-[500px] rounded-[16px] overflow-hidden">
 
@@ -55,4 +55,4 @@ const TeamCards = ({name,position,image}) => {
   );
 };
 
-export default TeamCards;
+export default TeamCard;

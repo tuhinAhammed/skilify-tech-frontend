@@ -9,6 +9,8 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import serviceOverviewBg from "../../assets/Service/serviceOverviewBg.jpg"
 import 'animate.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const ServiceOverview = () => {
   const [servicesData, setServicesData] = useState([]);
   const navigate = useNavigate();
@@ -20,7 +22,13 @@ const ServiceOverview = () => {
     };
     fetchApi();
   }, []);
-
+// Animation
+useEffect(() => {
+  AOS.init({
+    once: false, // or true, depending on whether you want animation only once
+    // other global settings
+  });
+}, []);
   return (
 <div
   className="py-sectionSm md:py-sectionMd lg:py-sectionLg bg-no-repeat bg-center bg-cover relative"
@@ -32,15 +40,19 @@ const ServiceOverview = () => {
       <Container>
         <div className=" z-10">
           <div className="flex items-center justify-center">
-            <SectionTitle text="Our Services" />
+            <SectionTitle data-aos="fade-down" data-aos-duration="1000"  text="Our Services" />
           </div>
+          <div className="">
+
           <LargeTitle
+          data-aos="fade-down" data-aos-duration="1000" 
             className=" font-bold w-[80%] md:w-[60%] m-auto text-center pt-2 md:pt-4 text-secondary animate__animated animate__bounce"
             text="Empower Your Business With Innovative Digital Services"
           />
+          </div>
 
           {/* List of Services */}
-          <div className="pt-5 sm:pt-6 md:pt-8 lg:pt-10 divide-y divide-white/30">
+          <div data-aos="fade-up" data-aos-duration="500" className="pt-5 sm:pt-6 md:pt-8 lg:pt-10 divide-y divide-white/30">
             {servicesData.map((item) => {
                 return(
 

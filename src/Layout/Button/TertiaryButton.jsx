@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
-const TertiaryButton = ({ className, text, slug, disabled, icon }) => {
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+const TertiaryButton = ({ className, text, slug, disabled, icon , ...rest}) => {
   const [isClicked, setIsClicked] = useState(false);
   const navigate = useNavigate()
   const handleButtonClick = () => {
@@ -13,8 +14,16 @@ const TertiaryButton = ({ className, text, slug, disabled, icon }) => {
       navigate(`/${slug}`);
     }
   };
+    // Animation
+useEffect(() => {
+  AOS.init({
+    once: false, // or true, depending on whether you want animation only once
+    // other global settings
+  });
+}, []);
   return (
     <div
+    {...rest}
     onClick={handleButtonClick}
     disabled={disabled}
       className={`relative inline-block px-2 sm:px-2 md:px-5 py-1 sm:py-[6px] md:py-[6px] lg:py-3  text-sm lg:text-base text-center  font-medium border-2 border-theme bg-theme rounded-md cursor-pointer text-white uppercase ${className} overflow-hidden group`}

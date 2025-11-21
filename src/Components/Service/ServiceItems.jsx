@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import Container from '../../Layout/Container'
 import ServiceCard from './ServiceCard'
 import { serviceListApi } from '../../Api/Api';
+import axios from 'axios';
+import LoadingButton from "../../Layout/Button/LoadingButton"
 const servicesItems = [
     {
         id: 1,
@@ -47,37 +49,48 @@ const servicesItems = [
     },
 ]
 const ServiceItems = () => {
-    // const [loading, setLoading] = useState(true);
-    // const [serviceData, setServiceData] = useState([]);
-
-    // useEffect(() => {
-    //     const services = async () => {
-    //         setLoading(true);
-    //         try {
-    //             const res = await axios.get(serviceListApi);
-    //             setServiceData(res.data.list); // Your API returns a single array
-    //             setLoading(false);
-    //         } catch (err) {
-    //             setLoading(false);
-    //         }
-    //     };
-    //     services();
-    // }, []);
-    // console.log(serviceData);
+    const [loading, setLoading] = useState(true);
+    const [serviceData, setServiceData] = useState([]);
+    const [visibleItems, setVisibleItems] = useState(8);
+    useEffect(() => {
+        const services = async () => {
+            setLoading(true);
+            try {
+                const res = await axios.get(serviceListApi);
+                setServiceData(res.data.list); // Your API returns a single array
+                setLoading(false);
+            } catch (err) {
+                setLoading(false);
+            }
+        };
+        services();
+    }, []);
+    console.log(serviceData);
+    const handleLoadMore = () => {
+        setVisibleItems((prev) => prev + 8);
+      };
   return (
-    <div>
-        <Container>
+    <div className='py-sectionSm md:py-sectionMd lg:py-sectionLg'>
+
             {
-                <div className='grid md:grid-cols-3 gap-8 mt-12 mb-24 justify-items-center'>
+                <div className='grid md:grid-cols-3 gap-8 justify-items-center'>
                     {
-                        servicesItems.map((item) => (    
+                        servicesItems.slice(0, visibleItems).map((item) => (    
                             <ServiceCard key={item.id} item={item}  />
                         ))
                     }
                 </div>
             }
-
-        </Container>
+            {servicesItems?.length > visibleItems && (
+              <div className="mt-4 text-center mx-auto">
+                <LoadingButton
+                  className="inline-block"
+                  loadingTime="1000"
+                  text="Load More"
+                  onClick={handleLoadMore}
+                />
+              </div>
+            )}
     </div>
   )
 }

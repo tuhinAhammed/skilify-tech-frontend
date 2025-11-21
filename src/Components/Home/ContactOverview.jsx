@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from '../../Layout/Container'
 import SectionTitle from '../../Layout/Title/SectionTitle'
 import LargeTitle from '../../Layout/Title/LargeTitle'
@@ -15,7 +15,8 @@ import founderSignature from "../../assets/About/founderSignature.png"
 import { BsBarChartFill } from 'react-icons/bs'
 import ContactForm from '../Contact/ContactForm'
 import { MdOutlineWifiCalling3 } from 'react-icons/md'
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const ContactOverview = () => {
     const whoWeAreData = [
         {
@@ -41,36 +42,44 @@ const ContactOverview = () => {
         },
 
     ]
+          // Animation
+          useEffect(() => {
+            AOS.init({
+              once: false,
+              mirror: true,
+            });
+          }, []);
     return (
         <Container>
             <div className='py-sectionSm md:py-sectionMd lg:py-sectionLg bg-secondary  ' >
                 {/* <div className="absolute inset-0 bg-black/80 pointer-events-none rounded-[2vw]"></div> */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 lg:gap-24 items-center relative">
 
-                    <div className="absolute px-6 md:px-12 py-4 md:py-8 bg-static flex gap-6 items-center rounded-bl-3xl bottom-0 right-[25%] rounded-lg">
-                        <div className="icon text-2xl md:text-4xl bg-theme p-3 md:p-4 text-primary rounded-full">
+                    <a href='tel:+8801321210076' target='_blank' data-aos="fade-up" data-aos-duration="1000" className="absolute group px-6 md:px-12 py-4 md:py-8 bg-static flex gap-6 items-center rounded-bl-3xl bottom-0 right-[25%] rounded-lg z-[2]">
+                        <div className="icon text-2xl md:text-4xl bg-theme p-3 md:p-4 text-primary rounded-full transform transition-transform duration-300 group-hover:-scale-x-100">
                             <MdOutlineWifiCalling3 />
                         </div>
                         <div className="">
                             <MinTitle className="text-tertiary" text="Call us anytime" />
-                            <MidTitle className="text-secondary" text="+00 000 222 000" />
+                            <MidTitle className="text-secondary" text="+880 1321-210076" />
                         </div>
-                    </div>
+                    </a>
                     <div className="md:col-span-5 ">
-                        <div className="flex items-center justify-center">
-                            <SectionTitle text="Contact us" />
+                        <div className="flex items-center justify-center md:justify-start">
+                            <SectionTitle data-aos="fade-right" data-aos-duration="1000" text="Contact us" />
 
                         </div>
                         <LargeTitle
+                        data-aos="fade-right" data-aos-duration="1000"
                             className="text-left font-semibold py-2 md:py-4 text-center md:text-left"
                             text="Get in Touch"
                         />
-                        <div className="px-12 md:px-0">
+                        <div data-aos="fade-up" data-aos-duration="1000" className="px-12 md:px-0">
                             <ContactForm />
                         </div>
                     </div>
                     <div className="md:col-span-7 overflow-hidden  ">
-                        <div className="">
+                        <div data-aos="fade-left" data-aos-duration="1000"  className="">
                             <img src={contactBanner} className="w-full h-full object-cover rounded-bl-[30%]" />
                         </div>
                     </div>

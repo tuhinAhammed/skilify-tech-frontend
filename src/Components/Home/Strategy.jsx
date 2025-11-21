@@ -70,22 +70,26 @@ const Strategy = () => {
 
             {/* <Container> */}
             <div className=" z-10">
+                <div data-aos="fade-up" data-aos-duration="1000" className="">
                 <LargeTitle
                     className=" font-bold w-[80%] md:w-[50%] m-auto text-center pt-2 md:pt-4 text-secondary animate__animated animate__bounce"
                     text="Let’s Build Your Growth Strategy Together"
                 />
-                <MidTitle className="py-6 md:py-8 text-tertiary w-[80%] md:w-[50%] m-auto text-center" text="Our consulting services are designed to help you uncover growth opportunities. Book a free consultation today and grow your business goals." />
-                <div className="m-auto text-center">
+
+                </div>
+                <MidTitle data-aos="fade-up" data-aos-duration="1000" className="py-6 md:py-8 text-tertiary w-[80%] md:w-[50%] m-auto text-center" text="Our consulting services are designed to help you uncover growth opportunities. Book a free consultation today and grow your business goals." />
+                <div data-aos="fade-up" data-aos-duration="1000" className="m-auto text-center">
                     <TertiaryButton icon={<MdOutlineSend />} slug="about" text="Send A Message" className="" />
                 </div>
                 <span
+                
                     class="pointer-events-none select-none inset-0 flex items-center justify-center text-[40px] sm:text-[80px] md:text-[120px]
         lg:text-[150px] font-bold opacity-10  text-secondary uppercase"
                     aria-hidden="true"
                 >
                     Digital Agency
                 </span>
-                <div className="md:mt-[-60px]">
+                <div  className="md:mt-[-60px]">
                     <Location />
                 </div>
             </div>

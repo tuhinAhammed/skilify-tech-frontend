@@ -9,6 +9,11 @@ import axios from 'axios'
 import { api, bannerApi } from '../../Api/Api'
 import shapeRing from "../../assets/Banner/shapeRing.png"
 import shapeSend from "../../assets/Banner/shapeSend.png"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import shapeDot from "../../assets/Banner/shapeDot.png"
+import shapeEllipse from "../../assets/Banner/shapeEllipse.png"
+import shapeZebra from "../../assets/Banner/shapeZebra.png"
 
 const Banner = () => {
     const [bannerData, setBannerData] = useState([])
@@ -21,28 +26,58 @@ const Banner = () => {
         fetchApi()
     }, [])
 
+
+    useEffect(() => {
+        AOS.init({
+            once: false, // or true, depending on whether you want animation only once
+            // other global settings
+        });
+    }, []);
     return (
-        <div className='py-sectionSm md:py-sectionMd lg:py-sectionLg bg-[#130D1A]'>
+        <div className='py-sectionSm md:py-sectionMd lg:py-sectionLg bg-no-repeat bg-center bg-cover relative bg-static' >
+            <img
+                src={shapeDot}
+                alt="shape"
+                className="absolute bottom-10 right-0 w-[460px]   z-2"
+            />
+
+            {/* SHAPE 2 (Ellipse) */}
+            <img
+                src={shapeEllipse}
+                alt="shape"
+                className="absolute bottom-[-35%] left-[-5%] w-[650px]  z-2"
+            />
+
+            {/* SHAPE 3 (Zebra) */}
+            <img
+                src={shapeZebra}
+                alt="shape"
+                className="absolute bottom-[-35%] left-[-5%] w-[650px] opacity-20 rotate-12 z-2"
+            />
+            <div className="absolute inset-0 bg-black/30 pointer-events-none"></div>
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-2  relative">
                     <div className="pt-8">
-                        <div className="text-center md:text-left">
+                        <div data-aos="fade-right" data-aos-duration="1000" className="text-center md:text-left">
                             <MidTitle
                                 className="bg-[#2B2631] px-6 py-2 text-secondary inline-block rounded-full"
                                 text="Solution for your Digital Products"
                             />
                         </div>
-                        <p className="text-secondary py-8 md:py-10 text-5xl sm:text-6xl md:text-8xl text-center md:text-left">
+                        <p data-aos="fade-right" data-aos-duration="1000" className="text-secondary py-8 md:py-10 text-5xl sm:text-6xl md:text-8xl text-center md:text-left">
                             <p className='font-bold'>Your Vision, Our <br /></p>
                             <p className='text-5xl sm:text-6xl md:text-7xl'>Digital Expertise</p>
                         </p>
-                        <MidTitle className="text-secondary text-center md:text-left md:w-[60%]" text="Highlights the partnership between the client’s vision and the agency’s technical and creative skills." />
-                        <div className="flex flex-col items-center md:items-start">
-                        <PrimaryButton
-                            icon={<IoArrowRedo />}
-                            className="!text-primary mt-10 w-[60%] md:w-[40%] uppercase"
-                            text="Discover More"
-                        />
+                        <div data-aos="fade-right" data-aos-duration="1000" className="">
+                            <MidTitle className="text-secondary text-center md:text-left md:w-[60%]" text="Highlights the partnership between the client’s vision and the agency’s technical and creative skills." />
+
+                        </div>
+                        <div data-aos="fade-right" data-aos-duration="1000" className="flex flex-col items-center md:items-start">
+                            <PrimaryButton
+                                icon={<IoArrowRedo />}
+                                className="!text-primary mt-10 w-[60%] md:w-[40%] uppercase"
+                                text="Discover More"
+                            />
                         </div>
                     </div>
 
@@ -58,11 +93,12 @@ const Banner = () => {
 
                         {/* Left main banner → bannerData[0] */}
                         <div className="flex items-center justify-center">
-                            <div className="relative group p-2 md:p-3 border-[6px] border-gray-200 rounded-l-full rounded-t-full shadow-md overflow-hidden">
+                            <div data-aos="fade-down" className="relative group p-2 md:p-3 border-[6px] border-gray-200 rounded-l-full rounded-t-full shadow-md overflow-hidden">
                                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent 
                                     translate-x-[-100%] rotate-12 group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out"></span>
 
                                 <img
+                                    data-aos-duration="1000"
                                     src={`${api}/storage/${bannerData?.[0]?.file}`}
                                     alt="Banner 1"
                                     className="w-full aspect-[2/4] max-h-[250px] md:max-h-[550px] object-cover rounded-l-full rounded-t-full"
@@ -74,7 +110,7 @@ const Banner = () => {
                         <div className="flex flex-col gap-6">
                             {[1, 2].map((pos, index) => (
                                 bannerData[pos] && (
-                                    <div key={pos} className="flex items-center gap-6 justify-center md:justify-end">
+                                    <div data-aos="fade-left" data-aos-duration="1000" key={pos} className="flex items-center gap-6 justify-center md:justify-end">
                                         <div
                                             className={`relative group p-2 md:p-3 border-2 border-gray-200 shadow-md overflow-hidden
                                                 ${index === 0

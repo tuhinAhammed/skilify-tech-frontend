@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../Layout/Container'
 import { teammembers } from '../Api/Api';
-import TeamCards from '../Components/About/Team-card';
+import Breadcrumb from '../Layout/Breadcrumb/Breadcrumb';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import TeamCard from '../Components/Team/TeamCard';
 const TeamMember=[
     {
         id:1,
@@ -40,7 +43,7 @@ const TeamMember=[
          image: "/team-6.png"
     },
 ]
-const TeamPage = () => {
+const Team = () => {
     //    const [loading, setLoading] = useState(true);
     // const [teamMembers, setTeamMembers] = useState([]);
 
@@ -58,21 +61,32 @@ const TeamPage = () => {
     //     services();
     // }, []);
     // console.log(teamMembers);
+    useEffect(() => {
+        AOS.init({
+            once: false, // or true, depending on whether you want animation only once
+            // other global settings
+        });
+    }, []);
   return (
     <div>
+      <Breadcrumb title="Team" />
+
         <Container>
+        <div className='py-sectionSm md:py-sectionMd lg:py-sectionLg' data-aos="fade-up" data-aos-duration="1000">
             {
                 <div className='grid md:grid-cols-3 gap-8 mt-12 mb-24 justify-items-center'>
                     {
                         TeamMember.map((item) => (
-                            <TeamCards key={item.id} {...item} />
+                            <TeamCard key={item.id} {...item} />
                         ))
                     }
                 </div>
             }
+
+        </div>
         </Container>
     </div>
   )
 }
 
-export default TeamPage
+export default Team

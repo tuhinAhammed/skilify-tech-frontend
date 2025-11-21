@@ -1,8 +1,11 @@
 import React from 'react'
 
-const MidTitle = ({className , text , key}) => {
+const MidTitle = ({className , text , key , ...rest}) => {
   return (
-    <h1 key={key} className={`text-sm md:text-base capitalize  ${className}`}>{text}</h1>
+    <h1 
+    {...rest} 
+    key={key} 
+    className={`text-sm md:text-base capitalize  ${className}`}>{text}</h1>
   )
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from '../../Layout/Container'
 import SectionTitle from '../../Layout/Title/SectionTitle'
 import LargeTitle from '../../Layout/Title/LargeTitle'
@@ -13,7 +13,8 @@ import CountUp from 'react-countup'
 import founderImg from "../../assets/About/founderImg.png"
 import founderSignature from "../../assets/About/founderSignature.png"
 import { BsBarChartFill } from 'react-icons/bs'
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const WhyUs = () => {
     const whoWeAreData = [
         {
@@ -39,6 +40,13 @@ const WhyUs = () => {
         },
 
     ]
+      // Animation
+  useEffect(() => {
+    AOS.init({
+      once: false,
+      mirror: true,
+    });
+  }, []);
     return (
         <div className=' py-sectionSm md:py-0 bg-static mt-24' >
             {/* <div className="absolute inset-0 bg-black/80 pointer-events-none rounded-[2vw]"></div> */}
@@ -50,11 +58,11 @@ const WhyUs = () => {
                 <Container>
                     <div className="">
                     <div className="flex flex-col items-center md:items-start">
-                        <SectionTitle text="Why choose us" />
+                        <SectionTitle  data-aos="fade-left" data-aos-duration="1000" text="Why choose us" />
                     </div>
-                        <LargeTitle className="font-bold pt-2 md:pt-4 text-secondary text-center md:text-left" text="We Optimize Your Funnel For Higher Conversions" />
-                        <MidTitle className="text-secondary text-center md:text-left opacity-[0.8] font-secondary py-4 sm:py-6 md:py-10" text="The primary goal of business market is to help organizations improve their performance." />
-                        <div className="">
+                        <LargeTitle  data-aos="fade-left" data-aos-duration="1000" className="font-bold pt-2 md:pt-4 text-secondary text-center md:text-left" text="We Optimize Your Funnel For Higher Conversions" />
+                        <MidTitle  data-aos="fade-left" data-aos-duration="1000" className="text-secondary text-center md:text-left opacity-[0.8] font-secondary py-4 sm:py-6 md:py-10" text="The primary goal of business market is to help organizations improve their performance." />
+                        <div  data-aos="fade-up" data-aos-duration="1000" className="">
                             <div className="pt-4 md:pt-0">
                                 <div className=" grid grid-cols-1 gap-2 md:gap-2">
                                     {

@@ -16,6 +16,8 @@ import SectionTitle from "../../Layout/Title/SectionTitle";
 import faqBanner from "../../assets/Faq/faqBanner.png"
 import faqShape from "../../assets/Faq/faqShape.png"
 import faqStar from "../../assets/Faq/faqStar.png"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const FaqsOverview = () => {
     const [loading, setLoading] = useState(true);
     const [faqData, setFaqData] = useState([]);
@@ -47,14 +49,20 @@ const FaqsOverview = () => {
         const key = `faq-${index}`;
         setFaqOpen((prev) => (prev === key ? null : key));
     };
-
+      // Animation
+      useEffect(() => {
+        AOS.init({
+          once: false,
+          mirror: true,
+        });
+      }, []);
     return (
         <div className="py-sectionSm md:py-sectionMd lg:py-sectionLg xl:py-sectionXl bg-secondary relative">
             <Container>
-                <div className="shape absolute top-15 left-[45rem] animate-bounce-top [animation-duration:2s]">
+                <div data-aos="fade-left" data-aos-duration="1000" className="shape absolute top-15 left-[45rem] animate-bounce-top [animation-duration:2s]">
                     <img src={faqShape} alt="" />
                 </div>
-                <div className="shape absolute animate-spin bottom-16 left-[45rem] animate-bounce-left [animation-duration:2s]">
+                <div data-aos="fade-left" data-aos-duration="1000" className="shape absolute animate-spin bottom-16 left-[45rem] animate-bounce-left [animation-duration:2s]">
                     <img src={faqStar} alt="" />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
@@ -65,10 +73,10 @@ const FaqsOverview = () => {
                             className="px-5 py-2 rounded-lg border-opacity-[0.3]"
                         >
                             <div className="flex flex-col items-center md:items-start">
-                                <SectionTitle text="our faqs" />
+                                <SectionTitle data-aos="fade-right" data-aos-duration="1000" text="our faqs" />
                             </div>
-                            <LargeTitle className="font-bold pt-2 md:pt-4 text-primary text-center md:text-left" text="Empowering Knowledge: Your Questions Answered" />
-                            <div className="question pt-4 sm:pt-6 md:pt-8">
+                            <LargeTitle  data-aos="fade-right" data-aos-duration="1000" className="font-bold pt-2 md:pt-4 text-primary text-center md:text-left" text="Empowering Knowledge: Your Questions Answered" />
+                            <div data-aos="fade-right" data-aos-duration="1000" className="question pt-4 sm:pt-6 md:pt-8">
 
                                 {faqData.slice(0, 4)?.map((faqItem, index) => {
                                     const faqKey = `faq-${index}`;
@@ -127,7 +135,7 @@ const FaqsOverview = () => {
                     <div
                         className=""
                     >
-                        <div className="img">
+                        <div data-aos="fade-left" data-aos-duration="1000" className="img">
                             <img src={faqBanner} alt="" />
                         </div>
                     </div>
