@@ -7,6 +7,7 @@ import contactBanner from "../../assets/Contact/contactBanner.png"
 import { IoIosArrowForward } from 'react-icons/io'
 import { useNavigate } from 'react-router'
 import { api } from '../../Api/Api'
+import MidTitle from '../../Layout/Title/MidTitle'
 
 const BlogCard = ({ blogLink, id, blogTitle, blogCategory, blogDesc, blogDate, blogImage }) => {
     const navigate = useNavigate()
@@ -70,11 +71,11 @@ const BlogCard = ({ blogLink, id, blogTitle, blogCategory, blogDesc, blogDate, b
                 <ExtraMidTitle
                     onClick={GoSingleBlog}
                     text={blogTitle}
-                    className="text-left font-semibold h-[60px] pt-3 cursor-pointer"
+                    className="text-left font-semibold pt-2 md:pt-3 cursor-pointer line-clamp-2 sm:line-clamp-2 lg:line-clamp-3 z-[10]"
                 />
 
-                <div className="flex gap-2 items-center justify-end text-base text-primary group-hover:text-theme duration-300">
-                    <div className="">Read More</div>
+                <div className="flex gap-1 md:gap-2 items-center justify-end text-base text-primary group-hover:text-theme duration-300">
+                    <MidTitle text="Read More" className="" />
                     <IoIosArrowForward className='group-hover:ml-2 duration-300 mt-[2px]' />
                 </div>
             </div>

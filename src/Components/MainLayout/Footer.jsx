@@ -210,13 +210,13 @@ const Footer = () => {
                             </a>
                         </div>
                     </div>
-                    <div className="grid justify-between grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4  2xl:grid-cols-4 gap-3 sm:gap-8 md:gap-10 lg:gap-12 ">
+                    <div className="grid justify-between grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4  2xl:grid-cols-4 gap-3 sm:gap-8 md:gap-10 lg:gap-24 ">
                         <div className="col-span-1 ">
                             <ExtraMidTitle className="font-secondary text-secondary font-semibold relative z-[10]" text="About" />
                             <MidTitle className="font-secondary text-lg text-secondary pt-2 md:pt-3" text="Welcome to our web design agency. Lorem ipsum simply free text dolor as sited amet" />
                         </div>
                         <div className="col-span-3">
-                            <div className=" grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-8 text-xs  lg:gap-12">
+                            <div className=" grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-8 text-xs  lg:gap-24">
                                 <div className="lg:col-span-1">
                                     <ExtraMidTitle className="font-secondary text-secondary font-semibold relative z-[10]" text="Explore" />
                                     <div className='mt-2 md:mt-5'>

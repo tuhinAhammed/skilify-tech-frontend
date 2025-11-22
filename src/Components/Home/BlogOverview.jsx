@@ -46,7 +46,7 @@ const BlogOverview = () => {
                     </div>
                     <div data-aos="fade-up" data-aos-duration="1000" className="">
                         <LargeTitle
-                            className=" font-bold w-[80%] md:w-[60%] m-auto text-center pt-2 md:pt-3 text-primary animate__animated animate__bounce"
+                            className=" font-bold w-[80%] md:w-[60%] m-auto text-center pt-2 md:pt-3 text-primary "
                             text="News & articles"
                         />
 

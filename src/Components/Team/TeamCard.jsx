@@ -1,22 +1,25 @@
 import { FaPlus, FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { api } from "../../Api/Api";
 
-const TeamCard = ({name,position,image}) => {
+const TeamCard = ({name,designation
+  ,image}) => {
   return (
     <div className="relative group bg-[url('/download.svg')] bg-[#F2F3F5] bg-no-repeat bg-center bg-contain w-[400px] h-[500px] rounded-[16px] overflow-hidden">
 
       {/* Image */}
-      <div>
+      <div className="aspect-[4/4] ">
         <img
-          src={image}
+          src={`${api}/storage/${image}`}
           alt="Team Photo"
-          className="w-full h-auto p-4 rounded-[28px]"
+          className="w-full h-full p-4 object-cover rounded-[28px]"
         />
       </div>
 
       {/* Text section */}
       <div className="ml-16">
         <h2 className="text-2xl font-bold mt-4">{name}</h2>
-        <p className="text-gray-600 mt-2">{position}</p>
+        <p className="text-gray-600 mt-2">{designation
+}</p>
       </div>
 
       {/* --- SOCIAL ICONS --- */}
