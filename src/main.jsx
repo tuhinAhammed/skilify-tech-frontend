@@ -11,8 +11,6 @@ import Team from "./Pages/Team.jsx";
 import Testimonials from "./Pages/Testimonials.jsx";
 import Faqs from "./Pages/Faqs.jsx";
 import SingleBlogPage from "./Pages/SingleBlogPage.jsx";
-import Blogs from "./Pages/Blogs.jsx";
-import About from "./Pages/About.jsx";
 
 
 const root = document.getElementById("root");
