@@ -25,11 +25,11 @@ ReactDOM.createRoot(root).render(
       <Route path="contact" element={<Contact />} />
       {/* <Route path="contact/user-contact" element={<UserContact />} /> */}
       <Route path="services" element={<Services />} />
-      <Route path="about" element={<About />} />
+      {/* <Route path="about" element={<About />} /> */}
       <Route path="team" element={<Team />} />
       <Route path="testimonials" element={<Testimonials />} />
       <Route path="faqs" element={<Faqs />} />
-      <Route path="blogs" element={<Blogs />} />
+      {/* <Route path="blogs" element={<Blogs />} /> */}
       <Route path="blog/:id" element={<SingleBlogPage />} />
 
       </Route>
