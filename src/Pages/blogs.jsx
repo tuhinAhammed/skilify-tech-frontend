@@ -33,14 +33,7 @@ const Blogs = () => {
     };
     fetchApi();
   }, []);
-  // useEffect(() => {
-  //   const fetchApi = async () => {
-  //     const response = await axios.get(blogsApi);
-  //     console.log(response);
-  //     setBlogData(response?.data?.list || []);
-  //   };
-  //   fetchApi();
-  // }, []);
+
   const sortedBlogData = [...blogData].sort((a, b) => new Date(b.blogDate) - new Date(a.blogDate))
   const handleLoadMore = () => {
     setVisibleItems((prev) => prev + 9);
