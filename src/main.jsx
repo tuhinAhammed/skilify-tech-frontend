@@ -10,9 +10,9 @@ import Services from "./Pages/Services.jsx";
 import Team from "./Pages/Team.jsx";
 import Testimonials from "./Pages/Testimonials.jsx";
 import Faqs from "./Pages/Faqs.jsx";
-import About from "./Pages/about.jsx";
-import Blogs from "./Pages/Blogs.jsx";
 import SingleBlogPage from "./Pages/SingleBlogPage.jsx";
+import Blogs from "./Pages/Blogs.jsx";
+import About from "./Pages/About.jsx";
 
 
 const root = document.getElementById("root");
