@@ -11,6 +11,8 @@ import Team from "./Pages/Team.jsx";
 import Testimonials from "./Pages/Testimonials.jsx";
 import Faqs from "./Pages/Faqs.jsx";
 import SingleBlogPage from "./Pages/SingleBlogPage.jsx";
+import About from "./Pages/About.jsx";
+import Blogs from "./Pages/Blogs.jsx";
 
 
 const root = document.getElementById("root");
@@ -23,11 +25,11 @@ ReactDOM.createRoot(root).render(
       <Route path="contact" element={<Contact />} />
       {/* <Route path="contact/user-contact" element={<UserContact />} /> */}
       <Route path="services" element={<Services />} />
-      {/* <Route path="about" element={<About />} /> */}
+      <Route path="about" element={<About />} />
       <Route path="team" element={<Team />} />
       <Route path="testimonials" element={<Testimonials />} />
       <Route path="faqs" element={<Faqs />} />
-      {/* <Route path="blogs" element={<Blogs />} /> */}
+      <Route path="blogs" element={<Blogs />} />
       <Route path="blog/:id" element={<SingleBlogPage />} />
 
       </Route>

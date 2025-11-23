@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SectionTitle from '../../Layout/Title/SectionTitle'
 import LargeTitle from '../../Layout/Title/LargeTitle'
 import Container from '../../Layout/Container'
 import TeamCard from '../Team/TeamCard'
+import axios from 'axios'
+import { teammembers } from '../../Api/Api'
 const OurTeamsMeet = [
     {
         name: "John Doe",
@@ -21,6 +23,22 @@ const OurTeamsMeet = [
     }
 ]
 const OurTeams = () => {
+    const [loading, setLoading] = useState(true);
+    const [teamMembers, setTeamMembers] = useState([]);
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            setLoading(true);
+            try {
+                const res = await axios.get(teammembers);
+                setTeamMembers(res.data.list); // Your API returns a single array
+                setLoading(false);
+            } catch (err) {
+                setLoading(false);
+            }
+        };
+        fetchApi();
+    }, []);
     return (
         <div className='py-sectionSm md:py-sectionMd lg:py-sectionLg'>
             <div className='flex items-center justify-center'>
@@ -29,14 +47,13 @@ const OurTeams = () => {
             <LargeTitle className="font-bold pt-2 md:pt-4 text-primary text-center w-full md:w-[40%] mx-auto" text="What Success Looks From The Back
 "/>
             <Container>
-                {<div className='grid md:grid-cols-3 gap-8 mt-12 mb-24 justify-items-center'>
+            <div className='grid md:grid-cols-3 gap-8 mt-12 mb-24 justify-items-center'>
                     {
-                        OurTeamsMeet.map((item, index) => (
-                            <TeamCard key={index} {...item} />
+                        teamMembers.map((item) => (
+                            <TeamCard key={item.id} {...item} />
                         ))
                     }
                 </div>
-                }
             </Container>
         </div>
     )
