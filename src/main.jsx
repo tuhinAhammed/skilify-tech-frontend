@@ -13,11 +13,17 @@ import Faqs from "./Pages/Faqs.jsx";
 import SingleBlogPage from "./Pages/SingleBlogPage.jsx";
 import About from "./Pages/About.jsx";
 import Blogs from "./Pages/Blogs.jsx";
+import { Provider } from "react-redux";
+import store from "./Redux/Store/store.js";
+import Projects from "./Pages/Projects.jsx";
+import SingleProject from "./Pages/SingleProject.jsx";
 
 
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root).render(
+<Provider store={store}>
+
   <BrowserRouter>
     <Routes>
       <Route  element={<RootLayout />} >
@@ -25,14 +31,18 @@ ReactDOM.createRoot(root).render(
       <Route path="contact" element={<Contact />} />
       {/* <Route path="contact/user-contact" element={<UserContact />} /> */}
       <Route path="services" element={<Services />} />
-      <Route path="about" element={<About />} />
+      <Route path="about-us" element={<About />} />
       <Route path="team" element={<Team />} />
       <Route path="testimonials" element={<Testimonials />} />
       <Route path="faqs" element={<Faqs />} />
       <Route path="blogs" element={<Blogs />} />
       <Route path="blog/:id" element={<SingleBlogPage />} />
+      <Route path="projects" element={<Projects />} />
+      <Route path="project/:id" element={<SingleProject />} />
 
       </Route>
     </Routes>
   </BrowserRouter>,
+</Provider>
+  
 );

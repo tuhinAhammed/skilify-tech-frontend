@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Container from '../Layout/Container'
-import { teammembers } from '../Api/Api';
+import { langingPageApi, teammembers } from '../Api/Api';
 import Breadcrumb from '../Layout/Breadcrumb/Breadcrumb';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -16,6 +16,20 @@ const Team = () => {
             try {
                 const res = await axios.get(teammembers);
                 setTeamMembers(res.data.list); // Your API returns a single array
+                setLoading(false);
+            } catch (err) {
+                setLoading(false);
+            }
+        };
+        services();
+    }, []);
+    useEffect(() => {
+        const services = async () => {
+            setLoading(true);
+            try {
+                const res = await axios.get(langingPageApi);
+                console.log(res.data.data);
+                // setTeamMembers(res.data.list);
                 setLoading(false);
             } catch (err) {
                 setLoading(false);

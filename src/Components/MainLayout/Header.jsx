@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PrimaryButton from '../../Layout/Button/PrimaryButton';
 import { FaGraduationCap, FaIndustry, FaNetworkWired, FaSearch, FaUserTie, FaUsers } from 'react-icons/fa';
-import logo from "../../assets/Header/logo.png";
 import Container from '../../Layout/Container';
 import { IoCodeSlash, IoSearch } from 'react-icons/io5';
 import MidTitle from '../../Layout/Title/MidTitle';
@@ -21,9 +20,11 @@ import { SiReadthedocs } from 'react-icons/si';
 import { ImCross, ImMenu3, ImMenu4 } from 'react-icons/im';
 import { RxCross2 } from 'react-icons/rx';
 import { Link, useLocation } from 'react-router';
+import { useSelector } from 'react-redux';
+import { api } from '../../Api/Api';
 // import Search from  "./../../Layout/Search"
-const serviceMenu = {
 
+const serviceMenu = {
     menuName: "Service",
     subMenu: [
         {
@@ -53,8 +54,8 @@ const serviceMenu = {
         },
     ]
 }
-const productSolutionMenu = {
 
+const productSolutionMenu = {
     menuName: "Service",
     subMenu: [
         {
@@ -82,63 +83,13 @@ const productSolutionMenu = {
             link: "/services/strategicConsultancy",
             icon: <FaIndustry />
         },
-
-        // {
-        //     name: "E-commerce",
-        //     link: "/products/e-commerce",
-        //     icon: <TiShoppingCart />
-        // },
-        // {
-        //     name: "Restaurant Management",
-        //     link: "/products/restaurant-management",
-        //     icon: <MdOutlineRestaurantMenu />
-        // },
-        // {
-        //     name: "Coaching & Consulting Solutions",
-        //     link: "/products/coaching",
-        //     icon: <AiOutlineSolution />
-        // },
-        // {
-        //     name: "Learning Management System (LMS)",
-        //     link: "/products/lms",
-        //     icon: <MdOutlineRealEstateAgent />
-        // },
-        // {
-        //     name: "Corporate & Influencer Portfolio",
-        //     link: "/products/portfolio",
-        //     icon: <MdCorporateFare />
-        // },
-        // {
-        //     name: "Customer Relationship Management (CRM)",
-        //     link: "/products/crm",
-        //     icon: <RiCustomerService2Fill />
-        // },
-        // {
-        //     name: "Human Resource Management System (HRMS)",
-        //     link: "/products/hrms",
-        //     icon: <MdOutlineInterpreterMode />
-        // },
-        // {
-        //     name: "Enterprise Resource Planning (ERP)",
-        //     link: "/products/erp",
-        //     icon: <HiOutlineSpeakerphone />
-        // },
-        // {
-        //     name: "Learning Management System (LMS)",
-        //     link: "/products/lms",
-        //     icon: <MdOutlineRealEstateAgent />
-        // },
     ]
 }
+
 const companyMenu = {
     name: "Company",
     link: "",
     subMenu: [
-        {
-            name: "About Us",
-            link: "/about",
-            icon: <RiDashboardHorizontalLine />
-        },
         {
             name: "Team",
             link: "/team",
@@ -154,58 +105,145 @@ const companyMenu = {
             link: "/faqs",
             icon: <VscTerminalTmux />
         },
-
     ]
 }
-
-
 
 const Header = () => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [menuShow, setMenuShow] = useState(false)
     const location = useLocation();
+    const { logo, company_phone } = useSelector(
+        (state) => state.landingPageData?.data || {}
+    );
+
     const handleResponsiveMenu = () => {
         setMenuShow(!menuShow)
-        console.log(menuShow);
     }
+
+    const handleLinkClick = () => {
+        setMenuShow(false);
+    }
+
     return (
         <>
-            {/* Header */}
-
             <style>{`
-  @keyframes fadeInTop {
-    0% { opacity: 0; transform: translateY(-10px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  .fade-in-top {
-    animation: fadeInTop 0.3s ease-out forwards;
-  }
-`}</style>
-            <nav className="bg-static sticky top-0 w-full z-[99999] ">
-
-                <Container className=" py-3 md:py-4 lg:py-0 ">
+                @keyframes fadeInTop {
+                    0% { opacity: 0; transform: translateY(-10px); }
+                    100% { opacity: 1; transform: translateY(0); }
+                }
+                .fade-in-top {
+                    animation: fadeInTop 0.2s ease-out forwards;
+                }
+                
+                /* Sidebar Animation Styles */
+                @keyframes slideInFromLeft {
+                    0% { transform: translateX(-100%); opacity: 0; }
+                    100% { transform: translateX(0); opacity: 1; }
+                }
+                
+                @keyframes slideOutToLeft {
+                    0% { transform: translateX(0); opacity: 1; }
+                    100% { transform: translateX(-100%); opacity: 0; }
+                }
+                
+                .sidebar-enter {
+                    animation: slideInFromLeft 0.2s ease-out forwards;
+                }
+                
+                .sidebar-exit {
+                    animation: slideOutToLeft 0.2s ease-out forwards;
+                }
+                
+                /* Overlay Animation */
+                @keyframes fadeIn {
+                    0% { opacity: 0; }
+                    100% { opacity: 1; }
+                }
+                
+                @keyframes fadeOut {
+                    0% { opacity: 1; }
+                    100% { opacity: 0; }
+                }
+                
+                .overlay-enter {
+                    animation: fadeIn 0.2s ease-out forwards;
+                }
+                
+                .overlay-exit {
+                    animation: fadeOut 0.2s ease-out forwards;
+                }
+                
+                /* Mobile menu styles */
+                .mobile-menu-container {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100vh;
+                    z-index: 99998;
+                    display: none;
+                }
+                
+                .mobile-menu-container.active {
+                    display: block;
+                }
+                
+                .mobile-menu-overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    backdrop-filter: blur(2px);
+                }
+                
+                .mobile-menu-sidebar {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    max-width: 100%;
+                    height: 100%;
+                    background: white;
+                    overflow-y: auto;
+                    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+                }
+                
+                @media (min-width: 1024px) {
+                    .mobile-menu-container {
+                        display: none !important;
+                    }
+                }
+            `}</style>
+            
+            {/* Header */}
+            <nav className="bg-static sticky top-0 w-full z-[99999]">
+                <Container className="py-4 md:py-4 lg:py-0">
                     <div className="relative">
-                        <div className="lg:flex justify-between lg:items-center  ">
-                            <div className="flex justify-between items-center ">
-
-                                <a href="/" className="logo flex gap-x-[2px] lg:gap-x-2 items-center ">
-                                    <img src={logo} alt="" className='w-[25px] md:w-[180px]' />
+                        <div className="lg:flex justify-between lg:items-center">
+                            <div className="flex justify-between items-center">
+                                <a href="/" className="logo flex gap-x-[2px] lg:gap-x-2 items-center gap-2">
+                                    <img src={`${api}/storage/${logo}`} alt="" className='w-[25px] md:w-[50px]' />
+                                    <p className="text-2xl text-theme font-black font-primary tracking-wider">
+                                        Skilify Tech
+                                    </p>
                                 </a>
-                                <p onClick={handleResponsiveMenu} className="text-xl text-secondary  block lg:hidden top-1 right-0 lg:hidden cursor-pointer">
-                                    {
-                                        menuShow ? <RxCross2 /> : <RiMenuLine />
-                                    }
+
+                                <p 
+                                    onClick={handleResponsiveMenu} 
+                                    className="text-xl text-secondary block lg:hidden top-1 right-0 lg:hidden cursor-pointer"
+                                >
+                                    {menuShow ? <RxCross2 /> : <RiMenuLine />}
                                 </p>
                             </div>
 
-                            {/* Navbar links and dropdown */}
-                            <div className={`${menuShow ? "block " : "hidden"} lg:block duration-1000`}>
-                                {/* <hr className='w-[100%] h-[2px] bg-secondary text-secondary'/> */}
-                                <hr className={`w-full h-[1px] bg-secondary bg-opacity-[0.3] mt-3 md:mt-4 block lg:hidden ${menuShow ? "block " : "hidden"}`} />
-                                <div className="grid gap-y-8 lg:flex lg:flex-wrap place-content-start lg:place-content-center h-[100vh] lg:h-[100%] lg:items-center py-4 lg:py-0 ">
-                                    <ul className='grid gap-y-4  xl:gap-y-6 lg:flex lg:flex-wrap  items-start  text-secondary text-sm md:text-base lg:text-sm lg:gap-x-8 items-center '>
+                            {/* Desktop Navigation */}
+                            <div className="hidden lg:block">
+                                <div className="flex items-center">
+                                    <ul className='flex flex-wrap items-center text-secondary text-sm md:text-base lg:text-sm lg:gap-x-8'>
                                         {/* Home Link */}
-                                        <li className=' lg:block  cursor-pointer text-secondary hover:text-secondary hover:text-opacity-[0.7] uppercase '>
+                                        <li className='cursor-pointer text-secondary hover:text-secondary hover:text-opacity-[0.7] uppercase'>
                                             <Link
                                                 to="/"
                                                 className={`font-secondary ${window.location.pathname === '/' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} lg:py-8`}
@@ -215,93 +253,37 @@ const Header = () => {
                                         </li>
 
                                         {/* Services with Dropdown */}
-                                        <li className=' lg:block  cursor-pointer text-secondary hover:text-secondary hover:text-opacity-[0.7] uppercase '>
-                                            <li className='lg:block cursor-pointer text-secondary hover:text-secondary hover:text-opacity-[0.7] uppercase'>
-                                                <Link
-                                                    to="/services"
-                                                    className={`font-secondary ${location.pathname === '/services' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} lg:py-8`}
-                                                >
-                                                    Services
-                                                </Link>
-                                            </li>
-                                        </li>
-                                        {/* <li className=" lg:block lg:py-8 relative group/outer  hover:text-secondary hover:text-opacity-[0.7] cursor-pointer ">
-
-                                            <span className="flex items-center cursor-pointer font-secondary uppercase">
-                                                Services
-                                                <MdKeyboardArrowDown className="ml-0 xl:ml-2 " />
-                                            </span>
-                                            <div className="bg-secondary lg:shadow-lg rounded-md hidden group-hover/outer:grid fade-in-top lg:absolute left-0 top-full grid grid-cols-1 gap-y-2 lg:!gap-y-6 p-3 md:p-6 lg:p-8 w-full lg:w-[400px] z-50 mt-3 lg:mt-0 relative lg:static ">
-
-                                                {serviceMenu.subMenu.map((item, subIndex) => (
-                                                    <a
-                                                        key={subIndex}
-                                                        href={item.link}
-                                                        className={`group/inner  ${window.location.pathname === item.link ? '' : ''} `}
-                                                    >
-                                                        <div className="flex gap-1 md:gap-2 lg:gap-4 items-center bg-opacity-[0.2] h-[100%] rounded-lg ">
-                                                            <p className='text-theme font-secondary text-lg md:text-2xl lg:text-2xl'>{item.icon}</p>
-                                                            <div className="">
-                                                                <MidTitle className="!font-secondary text-primary text-sm !font-normal lg:!font-normal md:text-base group-hover/inner:underline" text={item.name} />
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                ))}
-                                            </div>
-                                        </li> */}
-
-                                        {/* Product & Solution Dropdown */}
-                                        {/* <li className="block lg:hidden lg:py-8 relative group/outer  hover:text-secondary hover:text-secondary hover:text-opacity-[0.7]">
-                                            <span className="flex items-center cursor-pointer font-secondary uppercase">
-                                                Product & Solution
-                                                <MdKeyboardArrowDown className="ml-0 xl:ml-2 " />
-                                            </span>
-                                            <div className="bg-secondary lg:shadow-lg rounded-md hidden group-hover/outer:grid fade-in-top lg:absolute left-0 top-full grid grid-cols-1 gap-y-2 lg:!gap-y-6 p-3 md:p-6 lg:p-8 w-full lg:w-[400px] z-50 mt-3 lg:mt-0 relative lg:static ">
-
-                                                {productSolutionMenu.subMenu.map((item, subIndex) => (
-                                                    <a
-                                                        key={subIndex}
-                                                        href={item.link}
-                                                        className={`group/inner  ${window.location.pathname === item.link ? 'text-[#000]' : 'text-secondary'} !hover:text-[#000]`}
-                                                    >
-                                                        <div className="flex gap-1 md:gap-2 lg:gap-4 items-center bg-opacity-[0.2] h-[100%] rounded-lg ">
-                                                            <p className='text-theme text-lg md:text-2xl lg:text-2xl'>{item.icon}</p>
-                                                            <div className="">
-                                                                <MidTitle className="text-primary text-sm !font-normal lg:!font-bold md:text-base group-hover/inner:underline !font-secondary" text={item.name} />
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                ))}
-                                            </div>
-                                        </li>
-                                        <li
-                                            tabIndex={0}
-                                            className="dropdown-container-mobile lg:dropdown-container-dekstop  lg:block lg:py-8 relative hover:text-secondary hover:text-opacity-[0.7] hidden lg:block"
-                                            onMouseEnter={() => setShowDropdown(true)}
-                                            onMouseLeave={() => setShowDropdown(false)}
-                                        >
-                                            <span className="flex items-center">
-                                                <a
-
-                                                    className={`font-secondary uppercase ${window.location.pathname === '/products' ? '!text-secondary' : ''} `}
-                                                >
-                                                    Product & Solution
-                                                </a>
-                                                <MdKeyboardArrowDown className="ml-0 xl:ml-2" />
-                                            </span>
-                                        </li> */}
-                                        {/* Portfolio Link */}
-                                        <li className='lg:block cursor-pointer text-secondary hover:text-secondary hover:text-opacity-[0.7] uppercase'>
+                                        <li className='cursor-pointer text-secondary hover:text-secondary hover:text-opacity-[0.7] uppercase'>
                                             <Link
-                                                to="/products"
-                                                className={`font-secondary ${location.pathname === '/products' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} lg:py-8`}
+                                                to="/services"
+                                                className={`font-secondary ${location.pathname === '/services' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} lg:py-8`}
                                             >
-                                                Products
+                                                Services
                                             </Link>
                                         </li>
+                                        
+                                        {/* Portfolio Link */}
+                                        <li className='cursor-pointer text-secondary hover:text-secondary hover:text-opacity-[0.7] uppercase'>
+                                            <Link
+                                                to="/projects"
+                                                className={`font-secondary ${location.pathname === '/projects' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} lg:py-8`}
+                                            >
+                                                Projects
+                                            </Link>
+                                        </li>
+                                        
+                                        {/* about us */}
+                                        <li className='cursor-pointer text-secondary hover:text-secondary hover:text-opacity-[0.7] uppercase'>
+                                            <Link
+                                                to="/about-us"
+                                                className={`font-secondary ${location.pathname === '/about-us' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} lg:py-8`}
+                                            >
+                                                About Us
+                                            </Link>
+                                        </li>
+                                        
                                         {/* Blogs Link */}
-
-                                        <li className='lg:block cursor-pointer text-secondary hover:text-secondary hover:text-opacity-[0.7] uppercase'>
+                                        <li className='cursor-pointer text-secondary hover:text-secondary hover:text-opacity-[0.7] uppercase'>
                                             <Link
                                                 to="/blogs"
                                                 className={`font-secondary ${location.pathname === '/blogs' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} lg:py-8`}
@@ -309,24 +291,24 @@ const Header = () => {
                                                 Blogs
                                             </Link>
                                         </li>
+                                        
                                         {/* Company with Dropdown */}
-                                        <li className=" lg:block lg:py-8 relative group/outer  hover:text-secondary hover:text-opacity-[0.7] cursor-pointer">
-                                            <span className="font-secondary uppercase flex items-center cursor-pointer ">
+                                        <li className="lg:py-8 relative group/outer hover:text-secondary hover:text-opacity-[0.7] cursor-pointer">
+                                            <span className="font-secondary uppercase flex items-center cursor-pointer">
                                                 Company
-                                                <MdKeyboardArrowDown className="ml-0 xl:ml-2 " />
+                                                <MdKeyboardArrowDown className="ml-0 xl:ml-2" />
                                             </span>
-                                            <div className="bg-secondary lg:shadow-lg rounded-md hidden group-hover/outer:grid fade-in-top lg:absolute left-0 top-full grid grid-cols-1 gap-y-2 lg:!gap-y-6 p-3 md:p-6 lg:p-8 w-full lg:w-[400px] z-50 mt-3 lg:mt-0 relative lg:static ">
-
+                                            <div className="bg-secondary lg:shadow-lg rounded-md hidden group-hover/outer:grid fade-in-top lg:absolute left-0 top-full grid grid-cols-1 gap-y-2 lg:!gap-y-6 p-3 md:p-6 lg:p-8 w-full lg:w-[400px] z-50 mt-3 lg:mt-0 relative lg:static">
                                                 {companyMenu.subMenu.map((item, subIndex) => (
                                                     <Link
                                                         key={subIndex}
                                                         to={item.link}
-                                                        className={`group/inner  ${window.location.pathname === item.link ? 'text-[#000]' : 'text-secondary'} !hover:text-[#000]`}
+                                                        className={`group/inner ${window.location.pathname === item.link ? 'text-[#000]' : 'text-secondary'} !hover:text-[#000]`}
                                                     >
-                                                        <div className="flex gap-1 md:gap-2 lg:gap-4 items-center bg-opacity-[0.2] h-[100%] rounded-lg ">
+                                                        <div className="flex gap-1 md:gap-2 lg:gap-4 items-center bg-opacity-[0.2] h-[100%] rounded-lg">
                                                             <p className='text-theme text-lg md:text-2xl lg:text-2xl'>{item.icon}</p>
                                                             <div className="">
-                                                                <MidTitle className="text-primary text-sm !font-normal lg:!font-normal md:text-base group-hover/inner:underline font-secondary " text={item.name} />
+                                                                <MidTitle className="text-primary text-sm !font-normal lg:!font-normal md:text-base group-hover/inner:underline font-secondary" text={item.name} />
                                                             </div>
                                                         </div>
                                                     </Link>
@@ -334,10 +316,8 @@ const Header = () => {
                                             </div>
                                         </li>
 
-
-
                                         {/* Contact Link */}
-                                        <li className='lg:block cursor-pointer text-secondary hover:text-secondary hover:text-opacity-[0.7] uppercase'>
+                                        <li className='cursor-pointer text-secondary hover:text-secondary hover:text-opacity-[0.7] uppercase'>
                                             <Link
                                                 to="/contact"
                                                 className={`font-secondary ${location.pathname === '/contact' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} lg:py-8`}
@@ -345,86 +325,136 @@ const Header = () => {
                                                 Contact
                                             </Link>
                                         </li>
-                                        <li>
-                                            {/* <a href='tel:+8801321210076' target='_blank' className=" group flex gap-4 items-center rounded-bl-3xl bottom-0 right-[25%] rounded-lg z-[2]">
-                                                <div className="icon text-xl  bg-theme p-2 md:p-3 text-primary rounded-full ">
-                                                    <MdOutlineWifiCalling3 className='transform transition-transform duration-300 group-hover:-scale-x-100'/>
-                                                </div>
-                                                <div className="">
-                                                    <MinTitle className="text-tertiary" text="Call us anytime" />
-                                                    <MidTitle className="text-secondary" text="+880 1321-210076" />
-                                                </div>
-                                            </a> */}
-                                            {/* <div className=" right flex items-center gap-x-6 text-theme text-sm md:text-md lg:text-sm  xl:text-lg ">
-                                                <div className='border-[1px] border-secondary rounded-md inline-block  relative'>
-                                                    <input
-                                                        placeholder='Search Here'
-                                                        type="search"
-                                                        className='px-2 py-1 md:py-2 md:px-3 lg:px-3 xl:px-4 bg-transparent outline-none text-secondary '
-                                                    />
-                                                    <p className='text-sm lg:text-lg absolute text-secondary top-2 md:top-3 lg:top-[10px] xl:top-[13px] lg:right-[10px] right-[6px]  '>
-                                                        <IoSearch />
-                                                    </p>
-                                                </div>
-                                            </div> */}
-                                        </li>
                                     </ul>
-
-                                    {/* Buttons */}
-
                                 </div>
                             </div>
-                            <a href='tel:+8801321210076' target='_blank' className=" group flex gap-4 items-center rounded-bl-3xl bottom-0 right-[25%] rounded-lg z-[2]">
-                                <div className="icon text-xl  bg-theme p-2 md:p-3 text-primary rounded-full ">
+
+                            <a href='tel:+8801321210076' target='_blank' className="group lg:flex gap-4 items-center rounded-bl-3xl bottom-0 right-[25%] rounded-lg z-[2] hidden">
+                                <div className="icon text-xl bg-theme p-2 md:p-3 text-primary rounded-full">
                                     <MdOutlineWifiCalling3 className='transform transition-transform duration-300 group-hover:-scale-x-100' />
                                 </div>
                                 <div className="">
                                     <MinTitle className="text-tertiary" text="Call us anytime" />
-                                    <MidTitle className="text-secondary" text="+880 1321-210076" />
+                                    <MidTitle className="text-secondary" text={company_phone} />
                                 </div>
                             </a>
                         </div>
                     </div>
-
-                    {/* Dropdown for Product & Solution */}
-                    <Container className="relative hidden lg:block">
-                        <div
-                            className={`showing bg-secondary block lg:absolute top-[100%] z-50 shadow-lg right-0 rounded-md p-3 md:p-6 lg:p-8 w-full lg:w-full ${showDropdown ? 'fade-in-top block' : 'hidden'}`}
-                            onMouseEnter={() => setShowDropdown(true)}
-                            onMouseLeave={() => setShowDropdown(false)}
-                        >
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                <div className="col-span-3">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                        {productSolutionMenu.subMenu.map((item, index) => (
-                                            <a href={item.link} key={index} className="innerBox flex gap-4 items-start p-2 group">
-                                                <p className='text-theme text-lg md:text-2xl lg:text-2xl'>{item.icon}</p>
-                                                <div>
-                                                    <MidTitle text={item.name} className="group-hover:underline font-secondary" />
-                                                    <p>Description about the service goes here...</p>
-                                                </div>
-                                            </a>
-                                        ))}
-                                    </div>
-                                    <a href="/services/strategicConsultancy" className="group inline-block float-right pr-5">
-                                        <button className="rounded-md text-secondary text-lg cursor-pointer font-medium text-theme duration-300 flex items-center gap-1">
-                                            <MidTitle text="View All Product" className="text-theme !text-[16px]" />
-                                            <MdKeyboardArrowRight className='text-theme group-hover:ml-2 duration-300 mt-[2px]' />
-                                        </button>
-                                    </a>
-                                </div>
-                                <div className="col-span-1 h-[100%] w-[100%] ">
-                                    {/* <img src={offer} alt="" className='rounded-md h-[100%]' /> */}
-                                </div>
-                            </div>
-                        </div>
-                    </Container>
                 </Container>
             </nav>
-            {/* <div className="pt-[50px] md:pt-[70px] lg:pt-[90px]"></div> */}
+
+            {/* Mobile Sidebar */}
+            <Container>
+            <div className={`mobile-menu-container !bg-static ${menuShow ? 'active' : ''}`}>
+                <div 
+                    className={`mobile-menu-overlay !bg-static ${menuShow ? 'overlay-enter' : 'overlay-exit'}`}
+                    onClick={handleResponsiveMenu}
+                ></div>
+                <div className={`mobile-menu-sidebar !bg-static ${menuShow ? 'sidebar-enter' : 'sidebar-exit'}`}>
+                    <div className="p-4 pt-16 !bg-static">
+                        <hr className="w-full h-[1px] bg-secondary bg-opacity-[0.3] mb-6" />
+                        <div className="grid gap-y-6 !bg-static">
+                            <ul className='grid gap-y-4 text-secondary text-base'>
+                                {/* Home Link */}
+                                <li className='cursor-pointer text-static hover:text-secondary hover:text-opacity-[0.7] uppercase text-secondary'>
+                                    <Link
+                                        to="/"
+                                        onClick={handleLinkClick}
+                                        className={`font-secondary text-secondary ${window.location.pathname === '/' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} block py-2`}
+                                    >
+                                        Home
+                                    </Link>
+                                </li>
+
+                                {/* Services Link */}
+                                <li className='cursor-pointer text-static hover:text-secondary hover:text-opacity-[0.7] uppercase'>
+                                    <Link
+                                        to="/services"
+                                        onClick={handleLinkClick}
+                                        className={`font-secondary text-secondary ${location.pathname === '/services' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} block py-2`}
+                                    >
+                                        Services
+                                    </Link>
+                                </li>
+                                
+                                {/* Portfolio Link */}
+                                <li className='cursor-pointer text-static hover:text-secondary hover:text-opacity-[0.7] uppercase'>
+                                    <Link
+                                        to="/projects"
+                                        onClick={handleLinkClick}
+                                        className={`font-secondary text-secondary ${location.pathname === '/projects' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} block py-2`}
+                                    >
+                                        Projects
+                                    </Link>
+                                </li>
+                                
+                                {/* About Us Link */}
+                                <li className='cursor-pointer text-static hover:text-secondary hover:text-opacity-[0.7] uppercase'>
+                                    <Link
+                                        to="/about-us"
+                                        onClick={handleLinkClick}
+                                        className={`font-secondary text-secondary ${location.pathname === '/about-us' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} block py-2`}
+                                    >
+                                        About Us
+                                    </Link>
+                                </li>
+                                
+                                {/* Blogs Link */}
+                                <li className='cursor-pointer text-static hover:text-secondary hover:text-opacity-[0.7] uppercase'>
+                                    <Link
+                                        to="/blogs"
+                                        onClick={handleLinkClick}
+                                        className={`font-secondary text-secondary ${location.pathname === '/blogs' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} block py-2`}
+                                    >
+                                        Blogs
+                                    </Link>
+                                </li>
+                                
+                                {/* Company with Dropdown */}
+                                <li className="cursor-pointer text-static hover:text-secondary hover:text-opacity-[0.7] uppercase">
+                                    <details className="group">
+                                        <summary className="flex items-center justify-between py-2 cursor-pointer list-none">
+                                            <span className="font-secondary text-secondary ">Company</span>
+                                            <MdKeyboardArrowDown className="transform group-open:rotate-180 transition-transform text-secondary" />
+                                        </summary>
+                                        <div className="ml-4 mt-2 grid gap-y-3">
+                                            {companyMenu.subMenu.map((item, subIndex) => (
+                                                <Link
+                                                    key={subIndex}
+                                                    to={item.link}
+                                                    onClick={handleLinkClick}
+                                                    className={`group/inner flex items-center gap-3 py-2 text-secondary ${window.location.pathname === item.link ? 'text-[#000]' : 'text-secondary'}`}
+                                                >
+                                                    <p className='text-theme text-xl'>{item.icon}</p>
+                                                    <MidTitle 
+                                                        className="text-secondary text-sm !font-normal group-hover/inner:underline font-secondary" 
+                                                        text={item.name} 
+                                                    />
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </details>
+                                </li>
+
+                                {/* Contact Link */}
+                                <li className='cursor-pointer text-static hover:text-secondary hover:text-opacity-[0.7] uppercase'>
+                                    <Link
+                                        to="/contact"
+                                        onClick={handleLinkClick}
+                                        className={`font-secondary ${location.pathname === '/contact' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} block py-2`}
+                                    >
+                                        Contact
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </Container>
         </>
     );
 };
 
 export default Header;
-

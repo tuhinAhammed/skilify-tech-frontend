@@ -17,31 +17,36 @@ import ContactForm from '../Contact/ContactForm'
 import { MdOutlineWifiCalling3 } from 'react-icons/md'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-const ContactOverview = () => {
-    const whoWeAreData = [
-        {
-            title: "Quality Services",
-            icon: <FaAward className="text-4xl " />,
-            desc: "Parturient montes nascetur ridiculus mus is maecenas venenatis, neque.",
-        },
-        {
-            title: "Professional Experts",
-            icon: <GrUserExpert className="text-4xl " />,
-            desc: "Parturient montes nascetur ridiculus mus is maecenas venenatis, neque.",
-        },
-        {
-            title: "99% Success Rates",
-            icon: <BsBarChartFill className="text-4xl " />,
-            desc: "Parturient montes nascetur ridiculus mus is maecenas venenatis, neque.",
-        }
-    ];
-    const counterData = [
-        {
-            title: "Years of Experience",
-            value: "25"
-        },
+import { useSelector } from 'react-redux'
+export const whoWeAreData = [
+    {
+        title: "Quality Services",
+        icon: <FaAward className="text-4xl " />,
+        desc: "Parturient montes nascetur ridiculus mus is maecenas venenatis, neque.",
+    },
+    {
+        title: "Professional Experts",
+        icon: <GrUserExpert className="text-4xl " />,
+        desc: "Parturient montes nascetur ridiculus mus is maecenas venenatis, neque.",
+    },
+    {
+        title: "99% Success Rates",
+        icon: <BsBarChartFill className="text-4xl " />,
+        desc: "Parturient montes nascetur ridiculus mus is maecenas venenatis, neque.",
+    }
+];
+export const counterData = [
+    {
+        title: "Years of Experience",
+        value: "25"
+    },
 
-    ]
+]
+const ContactOverview = () => {
+    const { logo, company_phone } = useSelector(
+        (state) => state.landingPageData?.data || {}
+      );
+
           // Animation
           useEffect(() => {
             AOS.init({
@@ -61,7 +66,7 @@ const ContactOverview = () => {
                         </div>
                         <div className="">
                             <MinTitle className="text-tertiary" text="Call us anytime" />
-                            <MidTitle className="text-secondary" text="+880 1321-210076" />
+                            <MidTitle className="text-secondary" text={company_phone} />
                         </div>
                     </a>
                     <div className="md:col-span-5 ">

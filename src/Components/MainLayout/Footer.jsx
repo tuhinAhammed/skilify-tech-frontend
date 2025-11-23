@@ -4,15 +4,15 @@ import logo from "../../assets/Header/logo.png"
 import MidTitle from '../../Layout/Title/MidTitle'
 import { FaArrowRightLong, FaLocationDot } from 'react-icons/fa6'
 import { IoMdMail } from 'react-icons/io'
-import { MdAddCall } from 'react-icons/md'
-import { NavLink } from 'react-router-dom'
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa'
+import { MdAddCall, MdEmail, MdOutlineWifiCalling3 } from 'react-icons/md'
+import { Link, NavLink } from 'react-router-dom'
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPhoneAlt, FaTwitter } from 'react-icons/fa'
 import MinTitle from '../../Layout/Title/MinTitle'
 import { AiOutlineSolution } from "react-icons/ai";
 import { BiCodeBlock } from "react-icons/bi";
 import { FaNetworkWired } from "react-icons/fa";
 import { HiOutlineMail, HiOutlineSpeakerphone } from "react-icons/hi";
-import { IoCodeSlash } from "react-icons/io5";
+import { IoCodeSlash, IoLocation } from "react-icons/io5";
 import { MdCorporateFare, MdDesignServices, MdOutlineInterpreterMode, MdOutlineRealEstateAgent, MdOutlineRestaurantMenu, MdReadMore } from "react-icons/md";
 import { RiCustomerService2Fill } from "react-icons/ri";
 import { TbDeviceMobileCode } from "react-icons/tb";
@@ -23,7 +23,10 @@ import ExtraMidTitle from '../../Layout/Title/ExtraMidTitle'
 import PrimaryButton from '../../Layout/Button/PrimaryButton'
 import { PiBellSimpleRingingBold } from 'react-icons/pi'
 import axios from 'axios'
-import { subscriptionPost } from '../../Api/Api'
+import { api, subscriptionPost } from '../../Api/Api'
+import { LuTimer } from 'react-icons/lu'
+import SubscriptionButton from '../../Layout/Button/SubscriptionButton'
+import { useSelector } from 'react-redux'
 
 const contactData = [
     {
@@ -42,6 +45,7 @@ const contactData = [
         icon: <MdAddCall />
     },
 ]
+
 const SocialContactData = [
     {
         title: "Facebook",
@@ -101,27 +105,27 @@ export const menuData = [
         ]
     },
 
-    {
-        name: "Company",
-        link: "",
-        subMenu: [
-            {
-                name: "About Optilius",
-                link: "/company/aboutUs",
-                icon: <MdReadMore />
-            },
-            {
-                name: "Career",
-                link: "/company/career",
-                icon: <FaNetworkWired />
-            },
-            {
-                name: "Terms & Conditions",
-                link: "/company/termsConditions",
-                icon: <VscTerminalTmux />
-            }
-        ]
-    },
+    // {
+    //     name: "Company",
+    //     link: "",
+    //     subMenu: [
+    //         {
+    //             name: "About Optilius",
+    //             link: "/company/aboutUs",
+    //             icon: <MdReadMore />
+    //         },
+    //         {
+    //             name: "Career",
+    //             link: "/company/career",
+    //             icon: <FaNetworkWired />
+    //         },
+    //         {
+    //             name: "Terms & Conditions",
+    //             link: "/company/termsConditions",
+    //             icon: <VscTerminalTmux />
+    //         }
+    //     ]
+    // },
     {
         name: "Blog",
         link: "/blog"
@@ -133,6 +137,90 @@ export const menuData = [
 ];
 const Footer = () => {
     const [emailValue, setEmailValue] = useState("")
+    const [couponCode, setCouponCode] = useState("");
+    const [couponCodeError, setCouponCodeError] = useState("");
+    const [couponApplyLoading, setCouponApplyLoading] = useState(false);
+    const { logo, company_phone , company_email , company_address} = useSelector(
+        (state) => state.landingPageData?.data || {}
+      );
+    const handleCouponCode = (e) => {
+        setCouponCode(e.target.value);
+    };
+    const applyCouponCode = async () => {
+        setCouponApplyLoading(true);
+        console.log("ok");
+        // setCouponApplyLoading(true);
+        // setCouponCodeError(""); // Reset error before validating
+
+        // // Validation: Ensure coupon code is entered
+        // if (!couponCode.trim()) {
+        //   setCouponApplyLoading(false);
+        //   setCouponCodeError("Please enter a valid coupon code.");
+        //   return;
+        // }
+
+        // // Extract product details
+        // const formattedProducts = products.map((product) => ({
+        //   id: product.productId,
+        //   price: product.productPrice,
+        //   quantity: product.quantity,
+        // }));
+
+        // const data = {
+        //   code: couponCode,
+        //   subtotal: validSubTotal,
+        //   products: formattedProducts,
+        // };
+
+        // try {
+        //   const response = await axios.post(couponApplyOnOrder, data, {
+        //     headers: {
+        //       Authorization: `Bearer ${loginToken}`,
+        //     },
+        //   });
+
+        //   console.log("Coupon Applied Successfully:", response);
+
+        //   // Check if the response is successful
+        //   if (response.status === 200) {
+        //     setApplyedCoupon(response.data);
+        //     setCouponCode("");
+        //     toast.success("Coupon Applied Successfully", {
+        //       position: `${toastr_position}`,
+        //       autoClose: 1500,
+        //       hideProgressBar: false,
+        //       closeOnClick: true,
+        //       pauseOnHover: true,
+        //       draggable: true,
+        //       progress: undefined,
+        //       theme: "light",
+        //       transition: Bounce,
+        //     });
+        //     setCouponCode("");
+        //   } else {
+        //     setCouponCodeError(response.data.message || "Invalid coupon code.");
+        //   }
+        //   setCouponApplyLoading(false);
+        // } catch (error) {
+        //   console.error("Error applying coupon:", error);
+        //   if (error.response && error.response.data) {
+        //     if (error.response.data.errors) {
+        //       setCouponCodeError(
+        //         error.response.data.errors.code?.[0] || "Invalid coupon."
+        //       );
+        //     } else {
+        //       setCouponCodeError(
+        //         error.response.data.message || "Failed to apply coupon."
+        //       );
+        //     }
+        //   } else {
+        //     setCouponCodeError("An unexpected error occurred. Please try again.");
+        //   }
+        // } finally {
+        //   setCouponApplyLoading(false);
+        // }
+    };
+
     const handleEmailChnage = (e) => {
         setEmailValue(e.target.value);
     }
@@ -179,6 +267,36 @@ const Footer = () => {
             handleSubmit();
         }
     };
+    const contactInformationData = [
+        {
+            sub: "Phone",
+            title: "Reach out for any inquiries",
+            desc: company_phone,
+            icon: <FaPhoneAlt />,
+            link: `tel:${company_phone}`, // tel link
+        },
+        {
+            sub: "Email",
+            title: "Send us an email anytime",
+            desc: company_email,
+            icon: <MdEmail />,
+            link: `mailto:${company_email}`, // mailto link
+        },
+        {
+            sub: "Location",
+            title: "Our Main Office",
+            desc: company_address,
+            icon: <IoLocation />,
+            link: "https://maps.app.goo.gl/vWAfu5oc2eTe3EbEA", // Google Maps
+        },
+        {
+            sub: "Office Time",
+            title: "Working Hours",
+            desc: "Mon - Sat | 10:00 - 19:00",
+            icon: <LuTimer />,
+            link: null, // no link
+        },
+    ];
     return (
 
         <>
@@ -190,35 +308,44 @@ const Footer = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 item-center justify-between py-sectionLg z-[10] border-b- border-borderColor">
                         <div className="email">
                             <MidTitle className="text-secondary  uppercase" text="SEND EMAIL" />
-                            <a href="mailto:needhelp@company.com" target='_blank'>
-                                <MidTitle className="text-secondary relative !z-[10] !lowercase" text="needhelp@company.com" />
+                            <a href={`mailto:${company_email}`} target='_blank'>
+                                <MidTitle className="text-secondary relative !z-[10] !lowercase" text={company_email} />
                             </a>
                         </div>
                         <div className="logo">
                             <div className="flex items-center gap-x-2 py-6 md:py-0 justify-center ">
-                                <img
-                                    src={logo}
-                                    alt=""
-                                    className="max-h-[40px] md:max-h-[60px] z-[10]"
-                                />
+                                <a href="/" className="logo flex gap-x-[2px] lg:gap-x-2 items-center gap-2 z-[10]">
+                                    <img src={`${api}/storage/${logo}`} alt="" className='w-[25px] md:w-[50px]' />
+                                    <p className="text-2xl  text-theme font-black font-primary tracking-wider">
+                                        Skilify Tech
+                                    </p>
+                                </a>
                             </div>
                         </div>
                         <div className="call text-right">
                             <MidTitle className="text-secondary  uppercase" text="CALL NOW" />
-                            <a href="mailto:+8801321-210076" target='_blank'>
-                                <MidTitle className="text-secondary relative !z-[10] !lowercase" text="+880 1321-210076" />
+                            <a href={`tel:${company_phone}`} target='_blank'>
+                                <MidTitle className="text-secondary relative !z-[10] !lowercase" text={company_phone} />
                             </a>
                         </div>
                     </div>
-                    <div className="grid justify-between grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4  2xl:grid-cols-4 gap-3 sm:gap-8 md:gap-10 lg:gap-24 ">
-                        <div className="col-span-1 ">
+                    <div className="grid justify-between grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12  2xl:grid-cols-4 gap-3 sm:gap-8 md:gap-10 lg:gap-24 ">
+                        <div className="col-span-4 ">
                             <ExtraMidTitle className="font-secondary text-secondary font-semibold relative z-[10]" text="About" />
-                            <MidTitle className="font-secondary text-lg text-secondary pt-2 md:pt-3" text="Welcome to our web design agency. Lorem ipsum simply free text dolor as sited amet" />
+                            <MidTitle className="font-secondary text-lg text-secondary mt-2 md:mt-5 pb-2 md:pb-3" text="WWelcome to our web design agency. We create beautiful, user-friendly websites that help businesses stand out online." />
+                            <div className='flex items-center gap-x-2 sm:gap-x-3 md:gap-x-4 lg:gap-x-4 mt-3 sm:mt-2 lg:mt-2'>
+                                {
+                                    SocialContactData.map((item) => (
+                                        <a href={item.link} className='text-sm md:text-lg lg:text-lg p-2 md:p-2 lg:p-3 bg-theme rounded-full text-primary hover:bg-theme hover:bg-opacity-[0.6] hover:text-primary relative z-[10] duration-200'>{item.icon}</a>
+
+                                    ))
+                                }
+                            </div>
                         </div>
-                        <div className="col-span-3">
-                            <div className=" grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-8 text-xs  lg:gap-24">
+                        <div className="col-span-8">
+                            <div className=" grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-8 text-xs  lg:gap-16">
                                 <div className="lg:col-span-1">
-                                    <ExtraMidTitle className="font-secondary text-secondary font-semibold relative z-[10]" text="Explore" />
+                                    <ExtraMidTitle className="font-secondary text-secondary font-semibold relative z-[10]" text="Quick Link" />
                                     <div className='mt-2 md:mt-5'>
                                         {
                                             menuData.map((item) => (
@@ -235,44 +362,50 @@ const Footer = () => {
 
                                 <div className="lg:col-span-1 ">
                                     <ExtraMidTitle className="font-secondary text-secondary font-semibold relative z-[10]" text="Contact" />
-                                    <div className='mt-2 md:mt-5 pb-2'>
-                                        <a href="mailto:needhelp@company.com" target='_blank'>
-                                            <MidTitle className="text-secondary  " text="Uttara - Dhaka , Bangladesh " />
-                                        </a>
-                                    </div>
-                                    <div className='flex items-center gap-x-2 sm:gap-x-3 md:gap-x-4 lg:gap-x-4 mt-3 sm:mt-2 lg:mt-2'>
-                                        {
-                                            SocialContactData.map((item) => (
-                                                <a href={item.link} className='text-sm md:text-lg lg:text-lg p-2 md:p-2 lg:p-3 bg-tertiary rounded-full text-secondary hover:bg-theme hover:text-primary relative z-[10] duration-300'>{item.icon}</a>
+                                    <div className="grid gap-4 grid-cols-1 mt-2 md:mt-5">
 
+                                        {
+                                            contactInformationData.map((item) => (
+                                                <div className="innerCard  flex items-center gap-4 group">
+                                                    <p className="text-lg text-theme rounded-full transform transition-transform duration-300 group-hover:-scale-x-100 ">
+                                                        {item.icon}
+                                                    </p>
+                                                    <div className="">
+                                                        {/* <MidTitle text={item.title} className="text-secondary" /> */}
+                                                        {
+                                                            item.link ?
+                                                                <Link to={item.link} target="_blank" rel="noopener noreferrer">
+                                                                    <MinTitle className="text-secondary " text={item.desc} />
+                                                                </Link>
+                                                                :
+                                                                <MinTitle className="text-secondary " text={item.desc} />
+                                                        }
+                                                    </div>
+                                                </div>
                                             ))
                                         }
                                     </div>
+
+
                                 </div>
                                 <div className="lg:col-span-1">
-                                    <ExtraMidTitle className="font-secondary text-secondary font-semibold relative z-[10]" text="Newsletter" />
-                                    <MidTitle className="font-secondary text-lg text-secondary pt-2 md:pt-3" text="Subsrcibe for our upcoming latest articles and news resources." />
-                                    <div className='mt-2 md:mt-5'>
-                                        <div className="grid gap-3 grid-cols-1">
-                                            <div className="relative z-[10]">
-
-                                                <div className="flex items-center gap-2 pl-5  bg-secondary text-primary  rounded-full w-full ">
-                                                    <HiOutlineMail className='text-xl text-tertiary opacity-[0.7]' />
-                                                    <input
-                                                        onKeyDown={handleKeyDown}
-                                                        value={emailValue}
-                                                        onChange={handleEmailChnage}
-                                                        className=" text-xs md:text-sm lg:text-base focus-visible:outline-none outline-transparent focus-visible:border-[1px] border-transparent focus:!ring-0  py-1 md:py-2 lg:py-3 lg:py-2 px-2 w-full rounded-full"
-                                                        placeholder="Your Email Address.."
-                                                        type="email"
-                                                        required
-                                                    />
-                                                </div>
-                                                <div onClick={handleSubmit} className="mt-2">
-                                                    <PrimaryButton className="" icon={<PiBellSimpleRingingBold />} text="Subscribe to Newsletter" />
-                                                </div>
-                                            </div>
+                                    <ExtraMidTitle className="font-secondary  text-secondary font-semibold relative z-[10]" text="Newsletter" />
+                                    <MidTitle className="font-secondary text-lg text-secondary mt-2 md:mt-6" text="Subsrcibe for our upcoming latest articles and news resources." />
+                                    <div className='mt-2 md:mt-5 relative z-[10]'>
+                                        <div className="">
+                                            <SubscriptionButton
+                                                onClick={applyCouponCode}
+                                                onChange={handleCouponCode}
+                                                couponCode={couponCode} // Pass the couponCode state
+                                                couponApplyLoading={couponApplyLoading}
+                                            />
+                                            {couponCodeError && (
+                                                <p className="text-red-500 text-xs pt-[2px]">
+                                                    {couponCodeError}
+                                                </p>
+                                            )}
                                         </div>
+                                    
                                     </div>
                                 </div>
 
@@ -284,7 +417,7 @@ const Footer = () => {
                     {/* <Container> */}
                     <p className="div copyright text-sm md:text-base text-center text-secondary text-opacity-[0.7] pt-12">
 
-                        <p className='text-xs md:text-base font-secondary text-center  font-semibold'>© IT Company Website. All Rights Reserved | Designed by Skinify Tech</p>
+                        <p className=''>© IT Company Website. All Rights Reserved | Designed by Skilify Tech</p>
                         {/* <p className='text-xs md:text-md text-center  font-semibold'> </p> */}
 
                     </p>

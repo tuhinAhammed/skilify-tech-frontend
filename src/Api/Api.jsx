@@ -12,6 +12,9 @@ export const blogsApi = `${baseApi}/blogs  `;
 export const singleBlogApi = `${baseApi}/blog/`; //id
 export const teammembers = `${baseApi}/team-members  `;
 export const subscriptionPost = `${baseApi}/subscribe`;
+export const langingPageApi = `${baseApi}/settings`;
+export const projectsList = `${baseApi}/products `;
+export const singleProject = `${baseApi}/product/`;
 
 
 export const toastr_position = "top-right"

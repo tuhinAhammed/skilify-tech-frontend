@@ -18,40 +18,14 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
 import { LuTimer } from "react-icons/lu";
 import ExtraMidTitle from "../../Layout/Title/ExtraMidTitle";
-export const contactInformationData = [
-    {
-        sub: "Phone",
-        title: "Reach out for any inquiries",
-        desc: "+880 111111111",
-        icon: <FaPhoneAlt />,
-        link: "tel:+880111111111" // Direct call
-    },
-    {
-        sub: "Email",
-        title: "Send us an email anytime",
-        desc: "admin@gmail.com",
-        icon: <MdEmail />,
-        link: "tuhin.webdev@gmail.com" // Direct email
-    },
-    {
-        sub: "Location",
-        title: "Our Main Office",
-        desc: "Mohammadpur, Dhaka, Bangladesh",
-        icon: <IoLocation />,
-        link: "https://maps.app.goo.gl/example" // Open location in Google Maps
-    },
-    {
-        sub: "Office Time",
-        title: "Working Hours",
-        desc: "Mon - Sat | 10:00 - 19:00",
-        icon: <LuTimer />,
-        // link: ""
-    },
-];
+import { useSelector } from "react-redux";
+
 const Strategy = () => {
     const [servicesData, setServicesData] = useState([]);
     const navigate = useNavigate();
-
+    const { logo, company_phone , company_email , company_address} = useSelector(
+        (state) => state.landingPageData?.data || {}
+      );
     useEffect(() => {
         const fetchApi = async () => {
             const response = await axios.get(serviceListApi);
@@ -59,7 +33,36 @@ const Strategy = () => {
         };
         fetchApi();
     }, []);
-
+    const contactInformationData = [
+        {
+            sub: "Phone",
+            title: "Reach out for any inquiries",
+            desc: company_phone,
+            icon: <FaPhoneAlt />,
+            link: `tel:${company_phone}`, // tel link
+        },
+        {
+            sub: "Email",
+            title: "Send us an email anytime",
+            desc: company_email,
+            icon: <MdEmail />,
+            link: `mailto:${company_email}`, // mailto link
+        },
+        {
+            sub: "Location",
+            title: "Our Main Office",
+            desc: company_address,
+            icon: <IoLocation />,
+            link: "https://maps.app.goo.gl/vWAfu5oc2eTe3EbEA", // Google Maps
+        },
+        {
+            sub: "Office Time",
+            title: "Working Hours",
+            desc: "Mon - Sat | 10:00 - 19:00",
+            icon: <LuTimer />,
+            link: null, // no link
+        },
+    ];
     return (
         <div
             className="pt-sectionSm md:pt-sectionMd lg:pt-sectionLg bg-no-repeat bg-center bg-cover relative rounded-t-[30px] sm:rounded-t-[80px] md:rounded-t-[160px]"
@@ -79,7 +82,7 @@ const Strategy = () => {
                 </div>
                 <MidTitle data-aos="fade-up" data-aos-duration="1000" className="py-6 md:py-8 text-tertiary w-[80%] md:w-[50%] m-auto text-center" text="Our consulting services are designed to help you uncover growth opportunities. Book a free consultation today and grow your business goals." />
                 <div data-aos="fade-up" data-aos-duration="1000" className="m-auto text-center">
-                    <TertiaryButton icon={<MdOutlineSend />} slug="about" text="Send A Message" className="" />
+                    <TertiaryButton icon={<MdOutlineSend />} slug="contact" text="Send A Message" className="" />
                 </div>
                 <span
                 
@@ -97,6 +100,7 @@ const Strategy = () => {
                 <ExtraMidTitle text="Contact Info" className="font-bold font-secondary"/>
                 {
                     contactInformationData.map((item) => (
+                        <Link to={item.link} target="_blank" rel="noopener noreferrer">
                         <div className="innerCard  flex items-center gap-4 group">
                             <p className="text-2xl text-primary p-4 bg-theme rounded-full transform transition-transform duration-300 group-hover:-scale-x-100">
                                 {item.icon}
@@ -113,6 +117,7 @@ const Strategy = () => {
                                 }
                             </div>
                         </div>
+                        </Link>
                     ))
                 }
             </div>

@@ -22,7 +22,7 @@ const About = () => {
 
   return (
     <div className="">
-      <Breadcrumb title="About"  />
+      <Breadcrumb title="About Us"  />
       <div className=''>
         <AboutOurCompany bannerData={bannerData}/>
         <HowItWork />

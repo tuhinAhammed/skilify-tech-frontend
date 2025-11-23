@@ -40,21 +40,27 @@ const SingleBlogPage = () => {
 
       <div className="py-sectionSm md:py-sectionMd lg:py-sectionLg">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-12 lg:gap-x-20 relative ">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-6 md:gap-y-12 lg:gap-x-20 relative ">
 
             {/* Left Side Info */}
-            <div className="col-span-1  md:sticky top-24 md:h-[250px]">
-              <LargeTitle className="font-semibold" text="See Blog Details" />
-
-              <MidTitle
-                text={`Title: ${blog?.title}`}
-                className="pt-6 sm:pt-7 md:pt-8"
-              />
+            <div className="md:col-span-1  md:sticky top-24 md:h-[250px]">
+              <LargeTitle className="font-semibold text-center md:text-left" text="See Blog Details" />
 
               {/* Date */}
-              <div className="text-xs md:text-lg font-semibold  pt-3">
+              <div className="font-medium text-green-500 px-4  py-1 rounded-full bg-green-500 bg-opacity-[0.2] inline-block my-2 md:my-6">
                 {day} - {month}
               </div>
+              <div className="">
+                                    <MidTitle
+                                        className="font-primary font-semibold "
+                                        text={`Title :`}
+                                    />
+                                    <MidTitle
+                                        className="font-primary  "
+                                        text={`${blog?.title}`}
+                                    />
+                                </div>
+
               {/* <div className="text-xs text-primary font-light text-center">
                 
               </div> */}
@@ -64,7 +70,7 @@ const SingleBlogPage = () => {
             </div>
 
             {/* Right Side Blog Content */}
-            <div className="col-span-2  ">
+            <div className="md:col-span-2  ">
               <img
                 src={`${api}/storage/${blog?.image}`}
                 alt={blog?.title}

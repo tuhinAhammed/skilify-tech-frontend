@@ -14,26 +14,13 @@ import { MdAddCall } from 'react-icons/md';
 import Location from "../Components/Contact/Location"
 import ContactForm from "../Components/Contact/ContactForm"
 import SectionTitle from '../Layout/Title/SectionTitle';
-export const contactData = [
-  {
-    sub: "Location",
-    title: "Uttara , Dhaka - Bangladesh",
-    icon: <FaLocationDot />
-  },
-  {
-    sub: "Mail",
-    title: "admin@skilifyTech.com",
-    icon: <IoMdMail />
-  },
-  {
-    sub: "Number",
-    title: "+8801124156434",
-    icon: <MdAddCall />
-  },
-]
+import { useSelector } from 'react-redux';
+
 const Contact = () => {
   const [loading, setLoading] = useState(true);
-
+  const { logo, company_phone , company_email , company_address} = useSelector(
+    (state) => state.landingPageData?.data || {}
+  );
 
   useEffect(() => {
     AOS.init({
@@ -41,6 +28,23 @@ const Contact = () => {
       // other global settings
     });
   }, []);
+  const contactData = [
+    {
+      sub: "Location",
+      title: `${company_address}`,
+      icon: <FaLocationDot />
+    },
+    {
+      sub: "Mail",
+      title: `${company_email}`,
+      icon: <IoMdMail />
+    },
+    {
+      sub: "Number",
+      title: `${company_phone}`,
+      icon: <MdAddCall />
+    },
+  ]
   return (
     <div>
       <Breadcrumb title="Contact" />
@@ -53,7 +57,7 @@ const Contact = () => {
                 <div className="py-4 sm:py-8 md:py-16 lg:py-24 hover:bg-primary group duration-500 rounded-3xl">
                   <p className="text-center text-[40px] sm:text-[40px] md:text-[50px] lg:text-[70px] text-theme flex justify-center group-hover:text-secondary transform transition-transform duration-300 group-hover:-scale-x-100">{item.icon}</p>
                   <LargeTitle className="text-center !text-3xl py-2 md:py-4 font-semibold group-hover:text-secondary duration-300" text={item.sub} />
-                  <ExtraMidTitle className="text-center text-tertiary group-hover:text-secondary duration-300" text={item.title} />
+                  <ExtraMidTitle className="text-center !normal-case text-tertiary group-hover:text-secondary duration-300" text={item.title} />
                 </div>
               )
             })
