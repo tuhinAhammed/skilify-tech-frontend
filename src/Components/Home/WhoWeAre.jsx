@@ -94,7 +94,7 @@ const WhoWeAre = () => {
                         </div>
                         <div className="flex  items-center gap-6 md:gap-12 pt-6 md:pt-8 lg:pt-12 justify-between md:justify-start">
                             <div className="order-2 md:order-1">
-                            <TertiaryButton icon={<FiInfo />} slug="about" text="Read More" className="" />
+                            <TertiaryButton icon={<FiInfo />} slug="about-us" text="Read More" className="" />
                             </div>
                             <div className="flex gap-2 md:gap-4 items-center order-1 md:order-2">
                                 <div className="aspect-[1/1] max-h-[50px] md:max-h-[55px] border-2 border-tertiary rounded-full">

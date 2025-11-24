@@ -17,6 +17,7 @@ import store from "./Redux/Store/store.js";
 import Projects from "./Pages/Projects.jsx";
 import SingleProject from "./Pages/SingleProject.jsx";
 import About from "./Pages/About.jsx";
+import Error from "./Pages/Error.jsx";
 
 
 const root = document.getElementById("root");
@@ -39,6 +40,7 @@ ReactDOM.createRoot(root).render(
       <Route path="projects" element={<Projects />} />
       <Route path="project/:id" element={<SingleProject />} />
       <Route path="about-us" element={<About />} />
+      <Route path="*" element={<Error />} />
 
       </Route>
     </Routes>

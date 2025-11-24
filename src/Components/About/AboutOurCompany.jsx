@@ -68,7 +68,7 @@ const AboutOurCompany = ({ bannerData }) => {
             <SectionTitle text="About Our Company" />
             <LargeTitle className="font-bold pt-2 md:pt-4 font-primary text-primary" text="We Deliver Innovative Ideas To Elevate Your Digital Agency." />
             <MidTitle className="text-tertiary font-secondary py-6 md:py-8" text="Nullam nec ligula a enim dictum sagittis id quis est. Sed in tempus leo. Maecenas ut metus vitae risus lacinia ullamcorper. Aenean eleifend pellentesque sem vitae congue. Vivamus aliquam quam ut magna blandit dignissim eget sed arcu. Suspendisse potenti. Donec enim tortor." />
-            <div className="max-w-[35rem]">
+            <div className="px-3 ">
               <div className="flex items-center gap-4 md:gap-12 bg-white shadow rounded-full  py-4 group transition-all duration-300"
               >
                 {/* Icon Circle */}
@@ -81,7 +81,7 @@ const AboutOurCompany = ({ bannerData }) => {
                 </div>
 
                 {/* Text */}
-                <ExtraMidTitle text="We have more then 50+ year of services experience" className="font-semibold text-gray-900" />
+                <ExtraMidTitle text="We have more then 50+ year of services experience" className="font-semibold text-gray-900 md:w-[70%]" />
 
               </div>
             </div>
