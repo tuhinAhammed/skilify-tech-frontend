@@ -225,7 +225,7 @@ const Header = () => {
                             <div className="flex justify-between items-center">
                                 <a href="/" className="logo flex gap-x-[2px] lg:gap-x-2 items-center gap-2">
                                     <img src={`${api}/storage/${logo}`} alt="" className='w-[25px] md:w-[50px]' />
-                                    <p className="text-2xl text-theme font-black font-primary tracking-wider">
+                                    <p className="text-3xl text-secondary font-black font-primary tracking-wider">
                                         Skilify Tech
                                     </p>
                                 </a>
