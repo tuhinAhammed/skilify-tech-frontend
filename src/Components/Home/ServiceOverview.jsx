@@ -59,23 +59,23 @@ const ServiceOverview = () => {
                 <div
                   key={item.id}
                   onClick={() => navigate(`/service/${item.id}`)}
-                  className="flex justify-between items-center py-3 md:py-8 group cursor-pointer transition-all duration-500"
+                  className="md:flex md:justify-between items-center py-3 md:py-8 group cursor-pointer transition-all duration-500"
                 >
                   {/* Left side: ID + Icon + Title */}
-                  <div className="flex items-center gap-2 md:gap-2">
+                  <div className="md:flex items-center gap-2 md:gap-2">
                     {/* ID */}
                     <LargeTitle
-                      className="text-secondary transition-all duration-500 group-hover:text-theme min-w-[40px]"
+                      className="text-secondary transition-all duration-500 group-hover:text-theme min-w-[40px] hidden md:flex"
                       text={item.id}
                     />
 
                     {/* Service Icon Container - Hidden by default, slides in on hover */}
                     <div className="flex items-center overflow-hidden">
-                      <div className="w-0 h-24 opacity-0 transition-all duration-500 ease-in-out group-hover:w-48 group-hover:h-24 group-hover:opacity-100 group-hover:rounded-xl">
+                      <div className="md:w-0 md:h-24 aspect-[5/2] opacity-100 w-[100%] md:opacity-0 transition-all duration-500 ease-in-out md:group-hover:w-48 md:group-hover:h-24 md:group-hover:opacity-100  rounded-2xl">
                         <img
                           src={`${api}/storage/${item.icon}`}
                           alt="Service Icon"
-                          className="w-full h-full object-contain group-hover:rounded-2xl"
+                          className="w-full h-full object-cover md:object-cover group-hover:rounded-2xl rounded-2xl"
                         />
                       </div>
                     </div>
@@ -83,7 +83,7 @@ const ServiceOverview = () => {
 
                     {/* Service title */}
                     <ExtraLargeTitle
-                      className="text-secondary font-bold transition-all duration-500 group-hover:text-theme"
+                      className="text-secondary !text-2xl md:!text-4xl lg:!text-6xl font-bold transition-all duration-500 group-hover:text-theme py-4 md:py-0"
                       text={item.service_title}
                     />
                   </div>
@@ -91,8 +91,8 @@ const ServiceOverview = () => {
                   {/* Right side Arrow button */}
                   <div
                     className="p-2 sm:p-3 md:p-4 rounded-full bg-tertiary bg-opacity-40 
-                             text-secondary text-xl md:text-3xl rotate-[-30deg] 
-                             transition-all duration-500 ease-in-out
+                             text-secondary text-xl md:text-3xl md:rotate-[-30deg] 
+                             transition-all duration-500 ease-in-out inline-block
                              group-hover:bg-theme group-hover:rotate-0 group-hover:text-primary"
                   >
                     <IoIosArrowRoundForward />

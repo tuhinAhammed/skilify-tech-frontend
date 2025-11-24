@@ -34,6 +34,8 @@ const ProductOverview = () => {
   }, []);
 
   return (
+    <Container>
+
     <div className="w-full h-screen overflow-hidden md:py-sectionLg">
       <div className="flex items-center justify-center">
         <SectionTitle 
@@ -45,7 +47,7 @@ const ProductOverview = () => {
 
       <div data-aos="fade-up" data-aos-duration="1000">
         <LargeTitle
-          className="pb-8 font-bold w-[80%] md:w-[60%] m-auto text-center pt-2 md:pt-4 text-primary animate__animated animate__bounce"
+          className="md:pb-8 font-bold w-[80%] md:w-[60%] m-auto text-center pt-2 md:pt-4 text-primary animate__animated animate__bounce"
           text="We Have Complete 1000+ Awards Winning Projects"
         />
       </div>
@@ -59,7 +61,7 @@ const ProductOverview = () => {
         modules={[Mousewheel, Pagination]}
         className="mySwiper h-full"
         breakpoints={{
-          0: { direction: "horizontal" },
+          0: { direction: "vertical" },
           768: { direction: "vertical" },
         }}
       >
@@ -105,6 +107,7 @@ const ProductOverview = () => {
         ))}
       </Swiper>
     </div>
+    </Container>
   );
 };
 

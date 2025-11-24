@@ -76,11 +76,11 @@ useEffect(() => {
                             {statsData.map((item, index) => (
                                 <div
                                     key={index}
-                                    className="flex flex-wrap md:flex-nowrap gap-6 md:gap-0 md:justify-between items-center p-2 group transition-all bg-theme hover:bg-secondary rounded-full duration-500"
+                                    className="flex flex-wrap md:flex-nowrap gap-4 md:gap-0 md:justify-between items-center p-2 group transition-all bg-theme hover:bg-secondary rounded-full duration-500"
                                 >
                                     <div className="flex items-center gap-4 md:gap-6">
                                         <LargeTitle
-                                            className="text-secondary transition-all duration-500 bg-primary text-secondary rounded-full p-4 md:p-6"
+                                            className="text-secondary transition-all duration-500 bg-primary text-secondary rounded-full p-3 sm:p-4 md:p-6"
                                             text={item.icon}
                                         />
 
@@ -91,7 +91,7 @@ useEffect(() => {
                                     </div>
 
                                     <MidTitle
-                                        className="text-primary md:pr-12 !uppercase  md:pt-0"
+                                        className="text-primary !text-sm md:!text-base md:pr-12 !uppercase  md:pt-0"
                                         text={item.title}
                                     />
                                 </div>

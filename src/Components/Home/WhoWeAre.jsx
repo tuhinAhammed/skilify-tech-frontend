@@ -58,21 +58,21 @@ const WhoWeAre = () => {
                         <LargeTitle data-aos="fade-left" data-aos-duration="1000" className="font-bold pt-2 md:pt-4 text-center lg:text-left" text="We Optimize Your Funnel For Higher Conversions" />
                         </div>
                         <MidTitle className="text-tertiary opacity-[0.8] text-center lg:text-left font-secondary py-6 sm:py-6 md:py-8 lg:py-10" text="Digiplus is the hub for early adopters and innovation enthusiasts, offering vibrant, imaginative technology before it becomes mainstream sem taciti placerat There are many variations of passages of available but the majority" />
-                        <div className="grid grid-cols-12 items-center lg:items-end justify-between gap-6">
-                            <div className="col-span-9 md:col-span-8">
-                                <div className="grid grid-cols-1 gap-2 md:gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-12 items-center md:items-end justify-between gap-12 md:gap-6">
+                            <div className=" md:col-span-8">
+                                <div className="grid grid-cols-1 gap-12 md:gap-6">
                                     {
                                         whoWeAreData.map((item, index) => (
-                                            <div data-aos="fade-left" data-aos-duration="1000"  className="flex items-center gap-2 md:gap-6 group">
+                                            <div data-aos="fade-left" data-aos-duration="1000"  className="md:flex items-center gap-2 md:gap-6 group text-center md:text-left">
                                                 <p
                                                     key={index}
-                                                    className="text-2xl md:text-3xl lg:text-5xl text-theme transform transition-transform duration-300 group-hover:-scale-x-100"
+                                                    className="text-5xl text-theme transform transition-transform duration-300 group-hover:-scale-x-100 flex justify-center"
                                                 >
                                                     {item.icon}
                                                 </p>
 
                                                 <div>
-                                                    <MidTitle text={item.title} className="font-bold" />
+                                                    <MidTitle text={item.title} className="font-bold py-3 md:py-0" />
                                                     <MidTitle text={item.desc} className="text-tertiary opacity-80 md:pt-2" />
                                                 </div>
                                             </div>
@@ -81,18 +81,18 @@ const WhoWeAre = () => {
                                     }
                                 </div>
                             </div>
-                            <div className="col-span-3 md:col-span-4">
+                            <div className=" md:col-span-4">
                                 {
                                     counterData.map((item) => (
                                         <div className="text-center">
-                                            <CountUp className='text-2xl sm:text-3xl md:text-4xl lg:text-[120px]     text-primary  font-normal' start={0} end={item.value} delay={1} duration={2} /><span className='text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-black text-priimary pl-2'>+</span>
+                                            <CountUp className='text-[120px] leading-[0px] text-primary  font-bold md:font-normal' start={0} end={item.value} delay={1} duration={2} /><span className='text-8xl md:text-6xl font-black text-priimary pl-2'>+</span>
                                             <MidTitle text={item.title} className="uppercase text-tertiary opacity-[0.8] pt-2 md:pt-4" />
                                         </div>
                                     ))
                                 }
                             </div>
                         </div>
-                        <div className="flex justify-between items-center gap-6 md:gap-12 pt-5 sm:pt-6 md:pt-8 lg:pt-12">
+                        <div className="flex  items-center gap-6 md:gap-12 pt-8 md:pt-8 lg:pt-12">
                             <div className="order-2 md:order-1">
                             <TertiaryButton icon={<FiInfo />} slug="about" text="Read More" className="" />
                             </div>

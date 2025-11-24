@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SectionTitle from '../../Layout/Title/SectionTitle'
 import LargeTitle from '../../Layout/Title/LargeTitle'
 // import HowItworkCard from './HowItworkCard'
 import Container from '../../Layout/Container'
 import ServiceOverview from '../Home/ServiceOverview'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const howitWOrk = [
     {
         id: "01",
@@ -25,8 +27,14 @@ const howitWOrk = [
     }
 ]
 const HowItWork = () => {
+    useEffect(() => {
+        AOS.init({
+          once: false, // or true, depending on whether you want animation only once
+          // other global settings
+        });
+      }, []);
     return (
-        <div className="relative bg-[url('/How-it-work2.jpg')] bg-cover bg-center bg-no-repeat py-sectionSm md:py-sectionMd lg:py-sectionLg">
+        <div data-aos="fade-up" data-aos-duration="1000" className="relative bg-[url('/How-it-work2.jpg')] bg-cover bg-center bg-no-repeat py-sectionSm md:py-sectionMd lg:py-sectionLg">
             <div className='flex items-center justify-center'>
                 <SectionTitle text="How It Works" />
             </div>

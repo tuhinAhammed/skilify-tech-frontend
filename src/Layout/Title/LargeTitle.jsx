@@ -12,7 +12,7 @@ const LargeTitle = ({ className, text, ...rest }) => {
   return (
     <h1
       {...rest}
-      className={`text-lg sm:text-2xl md:text-4xl lg:text-5xl ${className}`}
+      className={`text-2xl md:text-4xl lg:text-5xl ${className}`}
     >
       {text}
     </h1>

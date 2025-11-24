@@ -72,7 +72,7 @@ const Strategy = () => {
             <div className="absolute rounded-t-[160px] inset-0 bg-black/30 pointer-events-none"></div>
 
             {/* <Container> */}
-            <div className=" z-10">
+            <div className=" z-10 relative">
                 <div data-aos="fade-up" data-aos-duration="1000" className="">
                 <LargeTitle
                     className=" font-bold w-[80%] md:w-[50%] m-auto text-center pt-2 md:pt-4 text-secondary animate__animated animate__bounce"
@@ -96,7 +96,8 @@ const Strategy = () => {
                     <Location />
                 </div>
             </div>
-            <div className="md:absolute mt-6 md:mt-0 bottom-32 right-12 bg-themeDeep grid grid-cols-1 gap-3 sm:gap-4 p-6 rounded-2xl">
+            <div className="hidden md:grid absolute mt-6 md:mt-0 bottom-32 right-12 bg-themeDeep grid-cols-1 gap-3 sm:gap-4 p-6 rounded-2xl z-[10]">
+
                 <ExtraMidTitle text="Contact Info" className="font-bold font-secondary"/>
                 {
                     contactInformationData.map((item) => (
@@ -106,7 +107,7 @@ const Strategy = () => {
                                 {item.icon}
                             </p>
                             <div className="">
-                                <MidTitle text={item.title} />
+                                <MidTitle className="" text={item.title} />
                                 {
                                     item.link ?
                                         <Link to={item.link} target="_blank" rel="noopener noreferrer">

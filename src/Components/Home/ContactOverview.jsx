@@ -79,7 +79,7 @@ const ContactOverview = () => {
                             className="text-left font-semibold py-2 md:py-4 text-center md:text-left"
                             text="Get in Touch"
                         />
-                        <div data-aos="fade-up" data-aos-duration="1000" className="px-12 md:px-0">
+                        <div data-aos="fade-up" data-aos-duration="1000" className="">
                             <ContactForm />
                         </div>
                     </div>

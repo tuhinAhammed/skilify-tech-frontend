@@ -51,7 +51,7 @@ const Team = () => {
         <Container>
         <div className='py-sectionSm md:py-sectionMd lg:py-sectionLg' data-aos="fade-up" data-aos-duration="1000">
             {
-                <div className='grid md:grid-cols-3 gap-8 mt-12 mb-24 justify-items-center'>
+                <div className='grid md:grid-cols-4 gap-8 mt-12 mb-24 justify-items-center'>
                     {
                         teamMembers.map((item) => (
                             <TeamCard key={item.id} {...item} />

@@ -15,7 +15,11 @@ import ExtraMidTitle from '../../Layout/Title/ExtraMidTitle';
 import founderImg from "../../assets/About/founderImg.png"
 import founderSignature from "../../assets/About/founderSignature.png"
 import { MdOutlineWifiCalling3 } from "react-icons/md";
+import { useSelector } from 'react-redux';
 const AboutOurCompany = ({ bannerData }) => {
+  const { logo, company_phone } = useSelector(
+    (state) => state.landingPageData?.data || {}
+  );
   useEffect(() => {
     AOS.init({
       once: false, // or true, depending on whether you want animation only once
@@ -60,7 +64,7 @@ const AboutOurCompany = ({ bannerData }) => {
 
             </div>
           </div>
-          <div>
+          <div data-aos="fade-up" data-aos-duration="1000">
             <SectionTitle text="About Our Company" />
             <LargeTitle className="font-bold pt-2 md:pt-4 font-primary text-primary" text="We Deliver Innovative Ideas To Elevate Your Digital Agency." />
             <MidTitle className="text-tertiary font-secondary py-6 md:py-8" text="Nullam nec ligula a enim dictum sagittis id quis est. Sed in tempus leo. Maecenas ut metus vitae risus lacinia ullamcorper. Aenean eleifend pellentesque sem vitae congue. Vivamus aliquam quam ut magna blandit dignissim eget sed arcu. Suspendisse potenti. Donec enim tortor." />
@@ -69,10 +73,10 @@ const AboutOurCompany = ({ bannerData }) => {
               >
                 {/* Icon Circle */}
                 <div
-                  className="w-24 h-24 bg-theme bg-opacity-[0.4] rounded-full flex items-center justify-center transition-all duration-500group-hover:bg-theme group-hover:flip-y"
+                  className="p-6 md:p-8 bg-theme bg-opacity-[0.4] rounded-full flex items-center justify-center transition-all text-2xl md:text-4xl text-blacktransition-all duration-500 group-hover:text-primary duration-500group-hover:bg-theme group-hover:flip-y"
                 >
                   <FaBezierCurve
-                    className="text-[24px] text-blacktransition-all duration-500 group-hover:text-primary"
+                    className=""
                   />
                 </div>
 
@@ -82,16 +86,18 @@ const AboutOurCompany = ({ bannerData }) => {
               </div>
             </div>
 
-            <div className='flex items-center gap-6 md:gap-24 py-8'>
-              <a href='tel:+8801321210076' target='_blank' className=" group flex gap-4 items-center rounded-bl-3xl bottom-0 right-[25%] rounded-lg z-[2]">
-                <div className="icon text-xl  bg-theme p-2 md:p-3 text-primary rounded-full ">
-                  <MdOutlineWifiCalling3 className='transform transition-transform duration-300 group-hover:-scale-x-100' />
-                </div>
-                <div className="">
-                  <MinTitle className="text-tertiary" text="Call us anytime" />
-                  <MidTitle className="text-primary" text="+880 1321-210076" />
-                </div>
-              </a>
+            <div className='grid grid-cols-1 sm:grid-cols-2 items-center gap-6 sm:gap-12 py-8'>
+              <div className="">
+                <a href={`tel:${company_phone}`} target='_blank' className=" group flex gap-4 items-center rounded-bl-3xl bottom-0 right-[25%] rounded-lg z-[2]">
+                  <div className="icon text-xl  bg-theme p-2 md:p-3 text-primary rounded-full ">
+                    <MdOutlineWifiCalling3 className='transform transition-transform duration-300 group-hover:-scale-x-100' />
+                  </div>
+                  <div className="">
+                    <MinTitle className="text-tertiary" text="Call us anytime" />
+                    <MidTitle className="text-primary" text={company_phone} />
+                  </div>
+                </a>
+              </div>
               <div className="flex gap-4 items-center order-1 md:order-2">
                 <div className="aspect-[1/1] max-h-[55px] border-2 border-tertiary rounded-full">
                   <img src={founderImg} alt="" className='rounded-full w-full object-fill' />

@@ -140,9 +140,9 @@ const Footer = () => {
     const [couponCode, setCouponCode] = useState("");
     const [couponCodeError, setCouponCodeError] = useState("");
     const [couponApplyLoading, setCouponApplyLoading] = useState(false);
-    const { logo, company_phone , company_email , company_address} = useSelector(
+    const { logo, company_phone, company_email, company_address } = useSelector(
         (state) => state.landingPageData?.data || {}
-      );
+    );
     const handleCouponCode = (e) => {
         setCouponCode(e.target.value);
     };
@@ -329,10 +329,10 @@ const Footer = () => {
                             </a>
                         </div>
                     </div>
-                    <div className="grid justify-between grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12  2xl:grid-cols-4 gap-3 sm:gap-8 md:gap-10 lg:gap-24 ">
-                        <div className="col-span-4 ">
+                    <div className="grid justify-between grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12  2xl:grid-cols-4 gap-10 md:gap-14 lg:gap-24 ">
+                        <div className="md:col-span-4 ">
                             <ExtraMidTitle className="font-secondary text-secondary font-semibold relative z-[10]" text="About" />
-                            <MidTitle className="font-secondary text-lg text-secondary mt-2 md:mt-5 pb-2 md:pb-3" text="WWelcome to our web design agency. We create beautiful, user-friendly websites that help businesses stand out online." />
+                            <MidTitle className="font-secondary  text-secondary mt-2 md:mt-5 pb-2 md:pb-3" text="WWelcome to our web design agency. We create beautiful, user-friendly websites that help businesses stand out online." />
                             <div className='flex items-center gap-x-2 sm:gap-x-3 md:gap-x-4 lg:gap-x-4 mt-3 sm:mt-2 lg:mt-2'>
                                 {
                                     SocialContactData.map((item) => (
@@ -342,9 +342,9 @@ const Footer = () => {
                                 }
                             </div>
                         </div>
-                        <div className="col-span-8">
-                            <div className=" grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-8 text-xs  lg:gap-16">
-                                <div className="lg:col-span-1">
+                        <div className="md:col-span-5">
+                            <div className=" grid grid-cols-2 md:grid-cols-2 gap-y-10 md:gap-y-14 lg:gap-y-24">
+                                <div className="md:col-span-1">
                                     <ExtraMidTitle className="font-secondary text-secondary font-semibold relative z-[10]" text="Quick Link" />
                                     <div className='mt-2 md:mt-5'>
                                         {
@@ -360,7 +360,7 @@ const Footer = () => {
                                     </div>
                                 </div>
 
-                                <div className="lg:col-span-1 ">
+                                <div className="md:col-span-1 ">
                                     <ExtraMidTitle className="font-secondary text-secondary font-semibold relative z-[10]" text="Contact" />
                                     <div className="grid gap-4 grid-cols-1 mt-2 md:mt-5">
 
@@ -388,25 +388,25 @@ const Footer = () => {
 
 
                                 </div>
-                                <div className="lg:col-span-1">
-                                    <ExtraMidTitle className="font-secondary  text-secondary font-semibold relative z-[10]" text="Newsletter" />
-                                    <MidTitle className="font-secondary text-lg text-secondary mt-2 md:mt-6" text="Subsrcibe for our upcoming latest articles and news resources." />
-                                    <div className='mt-2 md:mt-5 relative z-[10]'>
-                                        <div className="">
-                                            <SubscriptionButton
-                                                onClick={applyCouponCode}
-                                                onChange={handleCouponCode}
-                                                couponCode={couponCode} // Pass the couponCode state
-                                                couponApplyLoading={couponApplyLoading}
-                                            />
-                                            {couponCodeError && (
-                                                <p className="text-red-500 text-xs pt-[2px]">
-                                                    {couponCodeError}
-                                                </p>
-                                            )}
-                                        </div>
-                                    
-                                    </div>
+
+                            </div>
+                        </div>
+                        <div className="md:col-span-3">
+                            <ExtraMidTitle className="font-secondary  text-secondary font-semibold relative z-[10]" text="Newsletter" />
+                            <MidTitle className="font-secondary text-secondary mt-2 md:mt-6" text="Subsrcibe for our upcoming latest articles and news resources." />
+                            <div className='mt-2 md:mt-5 relative z-[10]'>
+                                <div className="">
+                                    <SubscriptionButton
+                                        onClick={applyCouponCode}
+                                        onChange={handleCouponCode}
+                                        couponCode={couponCode} // Pass the couponCode state
+                                        couponApplyLoading={couponApplyLoading}
+                                    />
+                                    {couponCodeError && (
+                                        <p className="text-red-500 text-xs pt-[2px]">
+                                            {couponCodeError}
+                                        </p>
+                                    )}
                                 </div>
 
                             </div>

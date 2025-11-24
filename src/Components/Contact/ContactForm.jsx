@@ -179,7 +179,7 @@ const ContactForm = ({ translations }) => {
               placeholder="Phone"
               value={formData.phone}
               name="phone"
-              className="!border-none  !text-left !px-3 sm:!px-3 md:!px-4 lg:!px-5 !py-2 sm:!py-[6px] md:py-2 lg:!py-3"
+              className=" !border-none "
             />
             {errors.phone && (
               <p className="text-red-500 text-xs pt-[2px]">{errors.phone}</p>

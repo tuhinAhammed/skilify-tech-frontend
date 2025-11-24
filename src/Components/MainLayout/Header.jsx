@@ -315,7 +315,6 @@ const Header = () => {
                                                 ))}
                                             </div>
                                         </li>
-
                                         {/* Contact Link */}
                                         <li className='cursor-pointer text-secondary hover:text-secondary hover:text-opacity-[0.7] uppercase'>
                                             <Link
@@ -325,6 +324,7 @@ const Header = () => {
                                                 Contact
                                             </Link>
                                         </li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -441,11 +441,12 @@ const Header = () => {
                                     <Link
                                         to="/contact"
                                         onClick={handleLinkClick}
-                                        className={`font-secondary ${location.pathname === '/contact' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} block py-2`}
+                                        className={`font-secondary text-secondary ${location.pathname === '/contact' ? 'text-secondary font-primary text-opacity-[0.7]' : ''} block py-2`}
                                     >
                                         Contact
                                     </Link>
                                 </li>
+
                             </ul>
                         </div>
                     </div>

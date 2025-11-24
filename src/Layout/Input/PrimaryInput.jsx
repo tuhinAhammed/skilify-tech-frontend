@@ -8,7 +8,7 @@ const PrimaryInput = ({value , onChange , type , placeholder , name , className}
   return (
     
     <div>
-      <input value={value} onChange={handleInputChange} className={`inline-block text-xs md:text-sm lg:text-sm font-medium rounded-md md:rounded-md lg:rounded-md px-3 sm:px-3 md:px-4 lg:px-5 py-2 sm:py-[6px] md:py-2 lg:py-3 bg-primary bg-opacity-[0.09] text-primary focus-visible:outline-none outline-theme focus-visible:border-[1px] border-theme w-full font-secondary ${className}`} placeholder={placeholder} type={type} name={name}  required/>
+      <input value={value} onChange={handleInputChange} className={`inline-block text-base font-medium rounded-md md:rounded-md lg:rounded-md px-3 sm:px-3 md:px-4 lg:px-5 py-3 sm:py-3 md:py-3 lg:py-3 bg-primary bg-opacity-[0.09] text-primary focus-visible:outline-[0.5px] outline-theme  w-full font-secondary ${className}`} placeholder={placeholder} type={type} name={name}  required/>
     </div>
   )
 }

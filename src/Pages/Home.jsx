@@ -12,12 +12,14 @@ import SubBrands from '../Components/Home/SubBrands'
 import ContactOverview from '../Components/Home/ContactOverview'
 import BlogOverview from '../Components/Home/BlogOverview'
 import Strategy from '../Components/Home/Strategy'
+import ShortMarque from '../Components/Home/ShortMarque'
 
 const Home = () => {
   return (
     <div className=''>
         <Banner/>
         <WhoWeAre/>
+        <ShortMarque/>
         <ServiceOverview/>
         <CompanyStats/>
         <ProductOverview/>

@@ -69,13 +69,13 @@ console.log(projectsData);
         <div className="text-center">
             <div className="flex items-center justify-center">
 
-          <SectionTitle data-aos="fade-down" data-aos-duration="1000" text="Our Services" />
+          <SectionTitle data-aos="fade-down" data-aos-duration="1000" text="Our Products" />
             </div>
           <LargeTitle
             data-aos="fade-down"
             data-aos-duration="1000"
             className="font-bold w-[80%] md:w-[60%] m-auto pt-2 md:pt-4 text-primary "
-            text="Empower Your Business With Innovative Digital Services"
+            text="Transform Your Vision Into Reality With Our Innovative Digital Solutions"
           />
         </div>
 
