@@ -26,7 +26,21 @@ const Services = () => {
     };
     services();
   }, []);
-  console.log(serviceData);
+  useEffect(() => {
+    const services = async () => {
+      setLoading(true);
+      try {
+        const res = await axios.get("https://ecom.bicharachar.com/api/product-list")
+        // setServiceData(res.data.list); 
+        console.log(res);
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+      }
+    };
+    services();
+  }, []);
+  // console.log(serviceData);
   const handleLoadMore = () => {
     setVisibleItems((prev) => prev + 8);
   };
