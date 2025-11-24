@@ -219,13 +219,13 @@ const Header = () => {
             
             {/* Header */}
             <nav className="bg-static sticky top-0 w-full z-[99999]">
-                <Container className="py-4 md:py-4 lg:py-0">
+                <div className="py-4 md:py-4 lg:py-0 lg:max-w-lg xl:max-w-xl container px-4 md:px-2 mx-auto">
                     <div className="relative">
                         <div className="lg:flex justify-between lg:items-center">
                             <div className="flex justify-between items-center">
                                 <a href="/" className="logo flex gap-x-[2px] lg:gap-x-2 items-center gap-2">
                                     <img src={`${api}/storage/${logo}`} alt="" className='w-[25px] md:w-[50px]' />
-                                    <p className="text-3xl text-secondary font-black font-primary tracking-wider">
+                                    <p className="text-2xl text-secondary font-black font-primary tracking-wider">
                                         Skilify Tech
                                     </p>
                                 </a>
@@ -340,7 +340,7 @@ const Header = () => {
                             </a>
                         </div>
                     </div>
-                </Container>
+                </div>
             </nav>
 
             {/* Mobile Sidebar */}

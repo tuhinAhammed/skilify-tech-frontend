@@ -38,7 +38,7 @@ ReactDOM.createRoot(root).render(
       <Route path="blog/:id" element={<SingleBlogPage />} />
       <Route path="projects" element={<Projects />} />
       <Route path="project/:id" element={<SingleProject />} />
-      <Route path="about" element={<About />} />
+      <Route path="about-us" element={<About />} />
 
       </Route>
     </Routes>

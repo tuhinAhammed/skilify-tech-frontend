@@ -45,14 +45,14 @@ const Banner = () => {
             <img
                 src={shapeEllipse}
                 alt="shape"
-                className="absolute bottom-[-35%] left-[-5%] w-[650px]  z-2"
+                className="absolute bottom-[-35%] left-[-5%] w-[650px] hidden md:flex  z-2"
             />
 
             {/* SHAPE 3 (Zebra) */}
             <img
                 src={shapeZebra}
                 alt="shape"
-                className="absolute bottom-[-35%] left-[-5%] w-[650px] opacity-20 rotate-12 z-2"
+                className="absolute bottom-[-35%] left-[-5%] w-[650px] hidden md:flex opacity-20 rotate-12 z-2"
             />
             <div className="absolute inset-0 bg-black/30 pointer-events-none"></div>
             <Container>
