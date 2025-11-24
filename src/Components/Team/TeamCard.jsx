@@ -50,7 +50,7 @@ const TeamCard = ({ name, designation
       {/* Text section */}
       <div className="ml-16">
         <h2 className="text-2xl font-bold mt-4">{name}</h2>
-        <p className="text-gray-600 mt-2">{designation
+        <p className="text-gray-600 mt-2 pb-4">{designation
         }</p>
       </div>
 

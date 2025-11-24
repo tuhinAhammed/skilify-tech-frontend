@@ -75,6 +75,7 @@ const Banner = () => {
                         <div data-aos="fade-right" data-aos-duration="1000" className="flex flex-col items-center md:items-start">
                             <PrimaryButton
                                 icon={<IoArrowRedo />}
+                                slug="about-us"
                                 className="!text-primary mt-10 w-[60%] md:w-[40%] uppercase"
                                 text="Discover More"
                             />

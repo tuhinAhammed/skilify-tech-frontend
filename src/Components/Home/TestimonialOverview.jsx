@@ -218,7 +218,7 @@ const TestimonialOverview = () => {
                       </div>
                       <div className="desc lg:col-span-3 text-left">
                         <FaQuoteLeft className='text-theme text-[40px] lg:text-[80px] leading-none' />
-                        <ExtraMidTitle text={item?.feedback} className="!text-tertiary font-secondary py-2 h-[130px] sm:h-[180px] lg:h-auto" />
+                        <MidTitle text={item?.feedback} className="!text-tertiary font-secondary py-2 h-[180px] sm:h-[180px] lg:h-auto" />
                         <MidTitle text={item?.name
                         } className="text-theme" />
                         <MinTitle text={item?.profession

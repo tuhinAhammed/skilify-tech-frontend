@@ -18,17 +18,17 @@ const CompanyStats = () => {
     const navigate = useNavigate();
     const statsData = [
         {
-            icon: <FaProjectDiagram size={32} />,
+            icon: <FaProjectDiagram  />,
             value: "230k",
             title: "Completed Projects",
         },
         {
-            icon: <FaSmile size={32} />,
+            icon: <FaSmile  />,
             value: "100%",
             title: "Satisfied Customers",
         },
         {
-            icon: <FaChartLine size={32} />,
+            icon: <FaChartLine  />,
             value: "960k",
             title: "SEO & Impressions",
         },
@@ -76,11 +76,11 @@ useEffect(() => {
                             {statsData.map((item, index) => (
                                 <div
                                     key={index}
-                                    className="flex flex-wrap md:flex-nowrap gap-4 md:gap-0 md:justify-between items-center p-2 group transition-all bg-theme hover:bg-secondary rounded-full duration-500"
+                                    className="flex flex-wrap md:flex-nowrap gap-2 md:gap-0 md:justify-between items-center p-2 group transition-all bg-theme hover:bg-secondary rounded-full duration-500"
                                 >
                                     <div className="flex items-center gap-4 md:gap-6">
                                         <LargeTitle
-                                            className="text-secondary transition-all duration-500 bg-primary text-secondary rounded-full p-3 sm:p-4 md:p-6"
+                                            className="text-secondary transition-all duration-500 bg-primary text-secondary rounded-full p-3 sm:p-3 md:p-6   !text-base md:!text-4xl lg:!text-5xl"
                                             text={item.icon}
                                         />
 

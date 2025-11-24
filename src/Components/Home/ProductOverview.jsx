@@ -13,14 +13,15 @@ import LargeTitle from '../../Layout/Title/LargeTitle';
 import MidTitle from '../../Layout/Title/MidTitle';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useNavigate } from 'react-router';
 
 const ProductOverview = () => {
-  const [bannerData, setBannerData] = useState([]);
-
+  const [projectData, setProjectData] = useState([]);
+  const navigate = useNavigate()
   useEffect(() => {
     const fetchApi = async () => {
       const response = await axios.get(productListApi);
-      setBannerData(response?.data?.list || []);
+      setProjectData(response?.data?.list || []);
     };
     fetchApi();
   }, []);
@@ -32,7 +33,17 @@ const ProductOverview = () => {
       mirror: true,
     });
   }, []);
-
+  const GoSingleProject = async ({ name , id}) => {
+    
+    console.log(name);
+    const projectSlug = name
+        .toLowerCase()
+        .replace(/[^\w\s]/g, '') // Remove special characters
+        .replace(/\s+/g, '-')    // Replace spaces with hyphens
+        .replace(/-+/g, '-')     // Replace multiple hyphens with single hyphen
+        .trim();
+    navigate(`/project/${projectSlug}`, { state: { projectId: id } });
+};
   return (
     <Container>
 
@@ -61,11 +72,11 @@ const ProductOverview = () => {
         modules={[Mousewheel, Pagination]}
         className="mySwiper h-full"
         breakpoints={{
-          0: { direction: "vertical" },
+          0: { direction: "horizontal" },
           768: { direction: "vertical" },
         }}
       >
-        {bannerData.map((item, index) => (
+        {projectData.map((item, index) => (
           <SwiperSlide key={index} className="h-full">
             <Container>
               <div className="grid grid-cols-1 md:grid-cols-2 items-center h-full md:py-10">
@@ -84,12 +95,13 @@ const ProductOverview = () => {
                       text={item.description} 
                     />
                   </div>
-
+                  <div onClick={() => GoSingleProject({ name: item.product_name, id: item.id })} className="">
                   <TertiaryButton  
                     icon={<FiInfo />} 
-                    slug="about" 
+                    slug="" 
                     text="Get Started" 
                   />
+                  </div>
                 </div>
 
                 {/* RIGHT IMAGE */}
