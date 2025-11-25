@@ -58,7 +58,7 @@ const Strategy = () => {
         {
             sub: "Office Time",
             title: "Working Hours",
-            desc: "Mon - Sat | 10:00 - 19:00",
+            desc: "25/7 Available",
             icon: <LuTimer />,
             link: null, // no link
         },

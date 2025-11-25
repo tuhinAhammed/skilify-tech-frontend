@@ -57,7 +57,8 @@ const WhoWeAre = () => {
                         <div className="">
                         <LargeTitle data-aos="fade-left" data-aos-duration="1000" className="font-bold pt-2 md:pt-4 text-center lg:text-left" text="We Optimize Your Funnel For Higher Conversions" />
                         </div>
-                        <MidTitle className="text-tertiary opacity-[0.8] text-center lg:text-left font-secondary py-6 sm:py-6 md:py-8 lg:py-10" text="Digiplus is the hub for early adopters and innovation enthusiasts, offering vibrant, imaginative technology before it becomes mainstream sem taciti placerat There are many variations of passages of available but the majority" />
+                        <MidTitle className="text-tertiary opacity-[0.8] text-center lg:text-left font-secondary py-6 sm:py-6 md:py-8 lg:py-10" text="Skilify Tech is a modern digital solutions and learning-focused agency committed to building smart, scalable, and high-quality technology services.
+ We combine innovation, creativity, and technical expertise to help businesses grow and individuals enhance their skills." />
                         <div className="grid grid-cols-1 md:grid-cols-12 items-center md:items-end justify-between gap-12 md:gap-6">
                             <div className=" md:col-span-8">
                                 <div className="grid grid-cols-1 gap-12 md:gap-6">

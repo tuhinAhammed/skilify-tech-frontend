@@ -16,7 +16,7 @@ const ShortMarque = () => {
                             class="pointer-events-none select-none inset-0 flex items-center justify-center text-[40px] sm:text-[80px] md:text-[100px] font-bold opacity-20  text-primary uppercase"
                             aria-hidden="true"
                         >
-                            Skilify
+                            Digital Solutions
                         </span>
                         <span
 
@@ -32,7 +32,7 @@ font-bold   text-theme uppercase"
     font-bold   text-primary uppercase"
                             aria-hidden="true"
                         >
-                            Marketing
+                            Creative Services
                         </span>
                         <span
 
@@ -48,24 +48,9 @@ font-bold   text-theme uppercase"
     font-bold   opacity-20  text-primary  uppercase "
                             aria-hidden="true"
                         >
-                            Solution
+                            Learning Opportunities
                         </span>
-                        <span
 
-class="pointer-events-none select-none inset-0 flex items-center justify-center text-[40px] sm:text-[80px] md:text-[100px]
-font-bold   text-theme uppercase"
-aria-hidden="true"
->
-<BsStars />
-</span>
-                        <span
-
-                            class="pointer-events-none select-none inset-0 flex items-center justify-center text-[40px] sm:text-[80px] md:text-[100px]
-    font-bold   text-primary uppercase"
-                            aria-hidden="true"
-                        >
-                           Web Agency
-                        </span>
 
                     </div>
                 </marquee>
