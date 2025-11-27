@@ -22,7 +22,7 @@ const Home = () => {
         <ShortMarque/>
         <ServiceOverview/>
         <CompanyStats/>
-        <ProductOverview/>
+        {/* <ProductOverview/> */}
         <WhyUs/>
         <FaqsOverview/>
         <TestimonialOverview/>

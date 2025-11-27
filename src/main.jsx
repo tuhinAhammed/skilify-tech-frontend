@@ -18,6 +18,7 @@ import Projects from "./Pages/Projects.jsx";
 import SingleProject from "./Pages/SingleProject.jsx";
 import About from "./Pages/About.jsx";
 import Error from "./Pages/Error.jsx";
+import SingleService from "./Pages/SingleService.jsx";
 
 
 const root = document.getElementById("root");
@@ -32,6 +33,7 @@ ReactDOM.createRoot(root).render(
       <Route path="contact" element={<Contact />} />
       {/* <Route path="contact/user-contact" element={<UserContact />} /> */}
       <Route path="services" element={<Services />} />
+      <Route path="service/:slug" element={<SingleService />} />
       <Route path="team" element={<Team />} />
       <Route path="testimonials" element={<Testimonials />} />
       <Route path="faqs" element={<Faqs />} />
@@ -41,7 +43,6 @@ ReactDOM.createRoot(root).render(
       <Route path="project/:id" element={<SingleProject />} />
       <Route path="about-us" element={<About />} />
       <Route path="*" element={<Error />} />
-
       </Route>
     </Routes>
   </BrowserRouter>,

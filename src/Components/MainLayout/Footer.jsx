@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import Container from '../../Layout/Container'
 import logo from "../../assets/Header/logo.png"
 import MidTitle from '../../Layout/Title/MidTitle'
-import { FaArrowRightLong, FaLocationDot } from 'react-icons/fa6'
+import { FaArrowRightLong, FaLocationDot, FaXTwitter } from 'react-icons/fa6'
 import { IoMdMail } from 'react-icons/io'
 import { MdAddCall, MdEmail, MdOutlineWifiCalling3 } from 'react-icons/md'
 import { Link, NavLink } from 'react-router-dom'
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPhoneAlt, FaTwitter } from 'react-icons/fa'
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPhoneAlt, FaTiktok, FaTwitter } from 'react-icons/fa'
 import MinTitle from '../../Layout/Title/MinTitle'
 import { AiOutlineSolution } from "react-icons/ai";
 import { BiCodeBlock } from "react-icons/bi";
@@ -23,10 +23,11 @@ import ExtraMidTitle from '../../Layout/Title/ExtraMidTitle'
 import PrimaryButton from '../../Layout/Button/PrimaryButton'
 import { PiBellSimpleRingingBold } from 'react-icons/pi'
 import axios from 'axios'
-import { api, subscriptionPost } from '../../Api/Api'
+import { api, subscriptionPost, toastr_position } from '../../Api/Api'
 import { LuTimer } from 'react-icons/lu'
 import SubscriptionButton from '../../Layout/Button/SubscriptionButton'
 import { useSelector } from 'react-redux'
+import { Bounce, toast } from 'react-toastify'
 
 const contactData = [
     {
@@ -50,12 +51,12 @@ const SocialContactData = [
     {
         title: "Facebook",
         icon: <FaFacebookF />,
-        link: "https://www.facebook.com/"
+        link: "https://www.facebook.com/skilifytech/"
     },
     {
         title: "Twitter",
-        icon: <FaTwitter />,
-        link: "#"
+        icon: <FaXTwitter />,
+        link: "https://x.com/SkilifyTech"
     },
     {
         title: "Linkedin",
@@ -65,7 +66,12 @@ const SocialContactData = [
     {
         title: "Instagram",
         icon: <FaInstagram />,
-        link: "#"
+        link: "https://www.instagram.com/skilifytech/"
+    },
+    {
+        title: "Tiktok",
+        icon: <FaTiktok />,
+        link: "https://www.tiktok.com/@skilify.tech?_r=1&_t=ZS-91j5rkYBiq5"
     },
 ]
 export const menuData = [
@@ -105,30 +111,13 @@ export const menuData = [
         ]
     },
 
-    // {
-    //     name: "Company",
-    //     link: "",
-    //     subMenu: [
-    //         {
-    //             name: "About Optilius",
-    //             link: "/company/aboutUs",
-    //             icon: <MdReadMore />
-    //         },
-    //         {
-    //             name: "Career",
-    //             link: "/company/career",
-    //             icon: <FaNetworkWired />
-    //         },
-    //         {
-    //             name: "Terms & Conditions",
-    //             link: "/company/termsConditions",
-    //             icon: <VscTerminalTmux />
-    //         }
-    //     ]
-    // },
     {
-        name: "Blog",
-        link: "/blog"
+        name: "Projects",
+        link: "/projects"
+    },
+    {
+        name: "Blogs",
+        link: "/blogs"
     },
     {
         name: "Contact",
@@ -137,89 +126,78 @@ export const menuData = [
 ];
 const Footer = () => {
     const [emailValue, setEmailValue] = useState("")
-    const [couponCode, setCouponCode] = useState("");
-    const [couponCodeError, setCouponCodeError] = useState("");
-    const [couponApplyLoading, setCouponApplyLoading] = useState(false);
+    const [subscriptionData, setSubscriptionData] = useState("");
+    const [subscriptionDataError, setSubscriptionDataError] = useState("");
+    const [subscriptionLoading, setSubscriptionLoading] = useState(false);
     const { logo, company_phone, company_email, company_address } = useSelector(
         (state) => state.landingPageData?.data || {}
     );
-    const handleCouponCode = (e) => {
-        setCouponCode(e.target.value);
+    const handleSubscriptionData = (e) => {
+        setSubscriptionData(e.target.value);
+  
     };
-    const applyCouponCode = async () => {
-        setCouponApplyLoading(true);
-        console.log("ok");
-        // setCouponApplyLoading(true);
-        // setCouponCodeError(""); // Reset error before validating
-
-        // // Validation: Ensure coupon code is entered
-        // if (!couponCode.trim()) {
-        //   setCouponApplyLoading(false);
-        //   setCouponCodeError("Please enter a valid coupon code.");
-        //   return;
-        // }
-
-        // // Extract product details
-        // const formattedProducts = products.map((product) => ({
-        //   id: product.productId,
-        //   price: product.productPrice,
-        //   quantity: product.quantity,
-        // }));
-
-        // const data = {
-        //   code: couponCode,
-        //   subtotal: validSubTotal,
-        //   products: formattedProducts,
-        // };
-
-        // try {
-        //   const response = await axios.post(couponApplyOnOrder, data, {
-        //     headers: {
-        //       Authorization: `Bearer ${loginToken}`,
-        //     },
-        //   });
-
-        //   console.log("Coupon Applied Successfully:", response);
-
-        //   // Check if the response is successful
-        //   if (response.status === 200) {
-        //     setApplyedCoupon(response.data);
-        //     setCouponCode("");
-        //     toast.success("Coupon Applied Successfully", {
-        //       position: `${toastr_position}`,
-        //       autoClose: 1500,
-        //       hideProgressBar: false,
-        //       closeOnClick: true,
-        //       pauseOnHover: true,
-        //       draggable: true,
-        //       progress: undefined,
-        //       theme: "light",
-        //       transition: Bounce,
-        //     });
-        //     setCouponCode("");
-        //   } else {
-        //     setCouponCodeError(response.data.message || "Invalid coupon code.");
-        //   }
-        //   setCouponApplyLoading(false);
-        // } catch (error) {
-        //   console.error("Error applying coupon:", error);
-        //   if (error.response && error.response.data) {
-        //     if (error.response.data.errors) {
-        //       setCouponCodeError(
-        //         error.response.data.errors.code?.[0] || "Invalid coupon."
-        //       );
-        //     } else {
-        //       setCouponCodeError(
-        //         error.response.data.message || "Failed to apply coupon."
-        //       );
-        //     }
-        //   } else {
-        //     setCouponCodeError("An unexpected error occurred. Please try again.");
-        //   }
-        // } finally {
-        //   setCouponApplyLoading(false);
-        // }
-    };
+    const handleSubscription = async () => {
+        setSubscriptionLoading(true);
+        setSubscriptionDataError(""); // Reset error
+      
+        // Validation: Ensure field is not empty
+        if (!subscriptionData.trim()) {
+          setSubscriptionLoading(false);
+          setSubscriptionDataError("Please enter an Email Address.");
+          return;
+        }
+      
+        // Email syntax validation
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(subscriptionData)) {
+          setSubscriptionLoading(false);
+          setSubscriptionDataError("Please enter a valid Email Address.");
+          return;
+        }
+      
+        try {
+          const response = await axios.post(subscriptionPost, {
+            email: subscriptionData
+          });
+      
+          console.log("Coupon Applied Successfully:", response);
+      
+          if (response.data.status === 200) {
+            toast.success(response.data.message, {
+              position: "top-right",
+              autoClose: 1500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "light",
+              transition: Bounce,
+            });
+      
+            setSubscriptionData(""); // reset field after success
+          } else {
+            setSubscriptionDataError(response.data.message || "Invalid Email Address");
+          }
+        } catch (error) {
+          console.error(error);
+          if (error.response && error.response.data) {
+            if (error.response.data.errors) {
+              setSubscriptionDataError(
+                error.response.data.errors.code?.[0] || "Invalid Email."
+              );
+            } else {
+              setSubscriptionDataError(
+                error.response.data.message || "Failed to Subscribe."
+              );
+            }
+          } else {
+            setSubscriptionDataError("An unexpected error occurred. Please try again.");
+          }
+        } finally {
+          setSubscriptionLoading(false);
+        }
+      };
+      
 
     const handleEmailChnage = (e) => {
         setEmailValue(e.target.value);
@@ -336,7 +314,7 @@ const Footer = () => {
                             <div className='flex items-center gap-x-2 sm:gap-x-3 md:gap-x-4 lg:gap-x-4 mt-3 sm:mt-2 lg:mt-2'>
                                 {
                                     SocialContactData.map((item) => (
-                                        <a href={item.link} className='text-sm md:text-lg lg:text-lg p-2 md:p-2 lg:p-3 bg-theme rounded-full text-primary hover:bg-theme hover:bg-opacity-[0.6] hover:text-primary relative z-[10] duration-200'>{item.icon}</a>
+                                        <a href={item.link} target='_blank' className='text-sm md:text-lg lg:text-lg p-2 md:p-2 lg:p-3 bg-theme rounded-full text-primary hover:bg-theme hover:bg-opacity-[0.6] hover:text-primary relative z-[10] duration-200'>{item.icon}</a>
 
                                     ))
                                 }
@@ -397,14 +375,14 @@ const Footer = () => {
                             <div className='mt-2 md:mt-5 relative z-[10]'>
                                 <div className="">
                                     <SubscriptionButton
-                                        onClick={applyCouponCode}
-                                        onChange={handleCouponCode}
-                                        couponCode={couponCode} // Pass the couponCode state
-                                        couponApplyLoading={couponApplyLoading}
+                                        onClick={handleSubscription}
+                                        onChange={handleSubscriptionData}
+                                        subscriptionData={subscriptionData} // Pass the subscriptionData state
+                                        subscriptionLoading={subscriptionLoading}
                                     />
-                                    {couponCodeError && (
+                                    {subscriptionDataError && (
                                         <p className="text-red-500 text-xs pt-[2px]">
-                                            {couponCodeError}
+                                            {subscriptionDataError}
                                         </p>
                                     )}
                                 </div>

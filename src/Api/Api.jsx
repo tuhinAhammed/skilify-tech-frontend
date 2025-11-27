@@ -4,6 +4,7 @@ export const api = DOMAIN_NAME
 const baseApi = BASE_URL
 export const bannerApi = `${baseApi}/banner`;
 export const serviceListApi = `${baseApi}/services`;
+export const singleServiceApi = `${baseApi}/service/`;
 export const productListApi = `${baseApi}/products`;
 export const faqDataApi = `${baseApi}/faqs`;
 export const testimonialsApi = `${baseApi}/testimonials `;
@@ -15,6 +16,8 @@ export const subscriptionPost = `${baseApi}/subscribe`;
 export const langingPageApi = `${baseApi}/settings`;
 export const projectsList = `${baseApi}/products `;
 export const singleProject = `${baseApi}/product/`;
+export const categoryListApi = `${baseApi}/active-categories`;
+
 
 
 export const toastr_position = "top-right"

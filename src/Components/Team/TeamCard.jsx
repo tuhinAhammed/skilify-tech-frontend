@@ -1,6 +1,6 @@
 import { FaPlus, FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { api } from "../../Api/Api";
-
+import defaultEmploy from "../../assets/Team/employShape.png"
 const TeamCard = ({ name, designation
   , image }) => {
   return (
@@ -9,7 +9,7 @@ const TeamCard = ({ name, designation
       {/* Image */}
       <div className="aspect-[4/4] relative ">
         <img
-          src={`${api}/storage/${image}`}
+          src={image ? `${api}/storage/${image}` : defaultEmploy}
           alt="Team Photo"
           className="w-full h-full p-4 object-cover rounded-[28px]"
         />

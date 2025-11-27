@@ -18,21 +18,8 @@ const Services = () => {
       setLoading(true);
       try {
         const res = await axios.get(serviceListApi);
-        setServiceData(res.data.list); // Your API returns a single array
-        setLoading(false);
-      } catch (err) {
-        setLoading(false);
-      }
-    };
-    services();
-  }, []);
-  useEffect(() => {
-    const services = async () => {
-      setLoading(true);
-      try {
-        const res = await axios.get("https://ecom.bicharachar.com/api/product-list")
-        // setServiceData(res.data.list); 
         console.log(res);
+        setServiceData(res.data.list); // Your API returns a single array
         setLoading(false);
       } catch (err) {
         setLoading(false);

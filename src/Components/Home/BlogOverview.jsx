@@ -99,7 +99,7 @@ const BlogOverview = () => {
                                 <BlogCard
                                     key={item.id}
                                     id={item.id}
-                                    blogLink={item.blogLink}
+                                    blogLink={item.slug}
                                     blogTitle={item.title}
                                     blogCategory={item.blogCategory}
                                     blogDesc={item.description}

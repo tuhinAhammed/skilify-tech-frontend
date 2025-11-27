@@ -7,23 +7,7 @@ import axios from 'axios'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { teammembers } from '../../Api/Api'
-const OurTeamsMeet = [
-    {
-        name: "John Doe",
-        position: "Lead Developer",
-        image: "/team-5.png"
-    },
-    {
-        name: "Jane Smith",
-        position: "UI/UX Designer",
-        image: "/team-4.png"
-    },
-    {
-        name: "Mike Johnson",
-        position: "Project Manager",
-        image: "/team-6.png"
-    }
-]
+
 const OurTeams = () => {
     const [loading, setLoading] = useState(true);
     const [teamMembers, setTeamMembers] = useState([]);
@@ -55,7 +39,7 @@ const OurTeams = () => {
             </div>
             <LargeTitle className="font-bold pt-2 md:pt-4 text-primary text-center w-full md:w-[40%] mx-auto" text="What Success Looks From The Back
 "/>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 mt-12 mb-24 items-center'>
+            <div className='grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-8 mt-12 mb-24 items-center'>
                     {
                         teamMembers.map((item) => (
                             <TeamCard key={item.id} {...item} />

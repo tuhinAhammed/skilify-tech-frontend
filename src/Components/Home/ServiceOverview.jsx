@@ -8,6 +8,7 @@ import { api, serviceListApi } from "../../Api/Api";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import serviceOverviewBg from "../../assets/Service/serviceOverviewBg.jpg"
+import defaultService from "../../assets/Service/defaultService.png"
 import 'animate.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -15,7 +16,15 @@ import 'aos/dist/aos.css';
 const ServiceOverview = () => {
   const [servicesData, setServicesData] = useState([]);
   const navigate = useNavigate();
-
+  const goSingleService = async ({name , id}) => {
+    const slug = name
+        .toLowerCase()
+        .replace(/[^\w\s]/g, '') // Remove special characters
+        .replace(/\s+/g, '-')    // Replace spaces with hyphens
+        .replace(/-+/g, '-')     // Replace multiple hyphens with single hyphen
+        .trim();
+    navigate(`/service/${slug}`, { state: { id: id } });
+};
   useEffect(() => {
     const fetchApi = async () => {
       const response = await axios.get(serviceListApi);
@@ -33,6 +42,7 @@ const ServiceOverview = () => {
 
   return (
     <div
+    
       className="py-sectionSm md:py-sectionMd lg:py-sectionLg bg-no-repeat bg-center bg-cover relative"
       style={{ backgroundImage: `url(${serviceOverviewBg})` }}
     >
@@ -58,7 +68,7 @@ const ServiceOverview = () => {
               return (
                 <div
                   key={item.id}
-                  onClick={() => navigate(`/service/${item.id}`)}
+                  onClick={() => goSingleService({ name: item.service_title, id: item?.id })}
                   className="md:flex md:justify-between items-center py-3 md:py-8 group cursor-pointer transition-all duration-500"
                 >
                   {/* Left side: ID + Icon + Title */}
@@ -73,7 +83,7 @@ const ServiceOverview = () => {
                     <div className="flex items-center overflow-hidden">
                       <div className="md:w-0 md:h-24 aspect-[5/2] opacity-100 w-[100%] md:opacity-0 transition-all duration-500 ease-in-out md:group-hover:w-48 md:group-hover:h-24 md:group-hover:opacity-100  rounded-2xl">
                         <img
-                          src={`${api}/storage/${item.icon}`}
+                          src={item?.icon ? `${api}/storage/${item.icon}` : defaultService}
                           alt="Service Icon"
                           className="w-full h-full object-cover md:object-cover group-hover:rounded-2xl rounded-2xl"
                         />
@@ -83,7 +93,7 @@ const ServiceOverview = () => {
 
                     {/* Service title */}
                     <ExtraLargeTitle
-                      className="text-secondary !text-2xl md:!text-4xl lg:!text-6xl font-bold transition-all duration-500 group-hover:text-theme py-4 md:py-0"
+                      className="text-secondary !text-2xl md:!text-4xl lg:!text-6xl font-bold transition-all duration-500 group-hover:text-theme py-4 md:py-0 pl-2"
                       text={item.service_title}
                     />
                   </div>

@@ -8,7 +8,7 @@ import { IoIosArrowForward } from 'react-icons/io'
 import { useNavigate } from 'react-router'
 import { api } from '../../Api/Api'
 import MidTitle from '../../Layout/Title/MidTitle'
-
+import defaultBlog from "../../assets/Blogs/defaultBlog.png"
 const BlogCard = ({ blogLink, id, blogTitle, blogCategory, blogDesc, blogDate, blogImage }) => {
     const navigate = useNavigate()
     const date = new Date(blogDate);
@@ -22,14 +22,14 @@ const BlogCard = ({ blogLink, id, blogTitle, blogCategory, blogDesc, blogDate, b
             .replace(/\s+/g, '-')    // Replace spaces with hyphens
             .replace(/-+/g, '-')     // Replace multiple hyphens with single hyphen
             .trim();
-        navigate(`/blog/${blogSlug}`, { state: { blogId: id } });
+        navigate(`/blog/${blogSlug}`, { state: { blogId: id , slug: blogLink} });
     };
     return (
         <div className='group'>
             <div className="relative">
                 <div onClick={GoSingleBlog} className="relative overflow-hidden cursor-pointer">
                     <img
-                        src={`${api}/storage/${blogImage}`}
+                        src={blogImage ? `${api}/storage/${blogImage}` : defaultBlog}
                         alt=""
                         className="
             w-full 

@@ -22,6 +22,7 @@ const Banner = () => {
         const fetchApi = async () => {
             const response = await axios.get(bannerApi)
             setBannerData(response.data?.banner?.contents || [])
+            console.log(response);
         }
         fetchApi()
     }, [])

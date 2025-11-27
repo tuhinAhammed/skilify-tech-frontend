@@ -8,7 +8,8 @@ import { api } from "../../Api/Api";
 const ProjectCard = ({
   data
 }) => {
-const {description ,image , id , product_name} = data
+const {description ,image , id , product_name , slug} = data
+const [isLoaded , setIsLoaded] = useState(false)
 const navigate = useNavigate()
   // Truncate projectDesc to 76 characters
   const truncatedDesc =
@@ -26,7 +27,7 @@ const navigate = useNavigate()
         .replace(/\s+/g, '-')    // Replace spaces with hyphens
         .replace(/-+/g, '-')     // Replace multiple hyphens with single hyphen
         .trim();
-    navigate(`/project/${projectSlug}`, { state: { projectId: id } });
+    navigate(`/project/${projectSlug}`, { state: { projectId: id , slug : slug} });
 };
   // Trigger image load effect
   useEffect(() => {
@@ -36,7 +37,6 @@ const navigate = useNavigate()
       img.onload = handleImageLoad; // Trigger on image load
     }
   }, [image]);
-console.log(`${api}/storage/${image}`);
   return (
     <div onClick={GoSingleProject}>
       <div className="group/outer relative overflow-hidden bg-opacity-[0.2] rounded-md  shadow-lg hover:shadow-xl border-2 border-theme border-opacity-[0.1]">

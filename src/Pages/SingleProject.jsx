@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Container from "../Layout/Container";
 import LargeTitle from "../Layout/Title/LargeTitle";
 // import Line from "../Layout/Line";
@@ -8,21 +8,26 @@ import MinTitle from "../Layout/Title/MinTitle";
 import axios from "axios";
 import { api, singleProject } from "../Api/Api";
 import Breadcrumb from "../Layout/Breadcrumb/Breadcrumb";
+import PrimaryButton from "../Layout/Button/PrimaryButton";
 
 const SingleProject = () => {
     const [loading, setLoading] = useState(true);
     const [projectData, setProjectData] = useState([]);
-
+    const navigate = useNavigate()
     const location = useLocation();
-    const projectId = location?.state?.projectId;
+    const slug = location?.state?.slug;
     useEffect(() => {
         const fetchApi = async () => {
             setLoading(true);
             try {
-                const response = await axios.get(`${singleProject}${projectId}`);
+                const response = await axios.get(`${singleProject}${slug}`);
                 console.log(response);
                 setProjectData(response?.data?.single || []);
                 setLoading(false);
+                if(response.data.status === 404){
+                    navigate("/error")
+
+                }
             } catch (err) {
                 setLoading(false);
             }
@@ -37,6 +42,7 @@ const SingleProject = () => {
         image,
         price,
         product_name,
+        live_link,
         status
     } = projectData
     if (!projectData) {
@@ -45,12 +51,14 @@ const SingleProject = () => {
     const project = setProjectData
     return (
         <div className="">
-            <Breadcrumb title={product_name}/>
+            <Breadcrumb title={product_name} />
             <div className="py-sectionSm md:py-sectionMd lg:py-sectionMd">
                 <Container>
                     <div className="">
-                        <div className="grid md:grid-cols-3 gap-6 sm:gap-12 md:gap-20">
-                            <div className="md:col-span-1 md:sticky top-28 md:h-[250px]">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-6 md:gap-y-12 lg:gap-x-20 !relative ">
+
+                            {/* Left Side Info */}
+                            <div className="md:col-span-1 md:sticky md:top-0 md:h-[250px]">
                                 <div className="flex gap-6 justify-center md:justify-start">
                                     {availability === "in-stock" ? (
                                         <MidTitle
@@ -63,7 +71,7 @@ const SingleProject = () => {
                                             text="Out Of Stock"
                                         />
                                     )}
-                                    <div className="">
+                                    {/* <div className="">
                                         {loading ? (
                                             <div className="h-2 md:h-7  w-12 md:w-20 lg:w-40 rounded-full bg-skeletonLoading animate-pulse"></div>
                                         ) : (
@@ -76,7 +84,7 @@ const SingleProject = () => {
                                                 />
                                             </div>
                                         )}
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <LargeTitle className="py-3 md:py-6 font-semibold font-secondary text-primary" text={product_name} />
 
@@ -90,12 +98,15 @@ const SingleProject = () => {
                                         text={`${description}`}
                                     />
                                 </div>
+                                <a href={live_link} target="_blank" >
+                                    <PrimaryButton className="mt-3 md:mt-6" text="Live Peeview" />
+                                </a>
                             </div>
                             <div className="md:col-span-2 ">
                                 <img
                                     src={`${api}/storage/${image}`}
                                     alt={product_name}
-                                    className=" border-2 border-theme border-opacity-[0.4] w-full"
+                                    className=" border-2 border-theme border-opacity-[0.4] w-full h-full"
                                 />
                             </div>
 

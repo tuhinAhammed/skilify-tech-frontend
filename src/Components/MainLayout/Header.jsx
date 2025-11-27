@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PrimaryButton from '../../Layout/Button/PrimaryButton';
-import { FaGraduationCap, FaIndustry, FaNetworkWired, FaSearch, FaUserTie, FaUsers } from 'react-icons/fa';
+import { FaCommentDots, FaGraduationCap, FaIndustry, FaNetworkWired, FaQuestionCircle, FaSearch, FaUserTie, FaUsers } from 'react-icons/fa';
 import Container from '../../Layout/Container';
 import { IoCodeSlash, IoSearch } from 'react-icons/io5';
 import MidTitle from '../../Layout/Title/MidTitle';
@@ -93,18 +93,18 @@ const companyMenu = {
         {
             name: "Team",
             link: "/team",
-            icon: <SiReadthedocs />
+            icon: <FaUsers />  // represents a group of people
         },
         {
             name: "Testimonials",
             link: "/testimonials",
-            icon: <FaNetworkWired />
+            icon: <FaCommentDots />  // represents feedback/comments
         },
         {
             name: "FAQ's",
             link: "/faqs",
-            icon: <VscTerminalTmux />
-        },
+            icon: <FaQuestionCircle />  // represents questions/help
+        }
     ]
 }
 
